@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "367258443916",
+    "project_id": "events-conferencespj",
+    "storage_bucket": "events-conferencespj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367258443916:android:4287916834f07b61871ba9",
+        "android_client_info": {
+          "package_name": "com.example.eventsconferencespj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "367258443916-dpfv0l7b9fu6qugnolpm5guj1dcqi68i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUsP1I4uHjmgeyD7keyx8XD_LaiezheLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367258443916-dpfv0l7b9fu6qugnolpm5guj1dcqi68i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
