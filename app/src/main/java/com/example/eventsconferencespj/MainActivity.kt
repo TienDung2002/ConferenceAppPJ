@@ -2,15 +2,21 @@ package com.example.eventsconferencespj
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.firebase.firestore.FirebaseFirestore
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var navControl: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Khởi tạo db
-        val database = FirebaseFirestore.getInstance()
-        val reference = database.collection("events")
+        val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navControl = navHost.navController
+
+//        setSupportActionBar(findViewById(R.id.toolbar))
+//        setupActionBarWithNavController(navControl)
     }
 }

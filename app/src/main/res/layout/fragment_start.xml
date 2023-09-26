@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_black"
+    android:background="@drawable/start_background"
     tools:context=".log.StartFragment">
 
     <ImageView
@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.4"
-        android:background="@drawable/start_background"
- />
+        android:background="@color/main_black" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -33,7 +32,6 @@
         android:text="CONVENT"
         android:textColor="@color/main_white"
         android:textSize="50sp"
-        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,10 +40,9 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="225dp"
+        android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_marginBottom="104dp"
-        android:alpha="0.9"
         android:background="@drawable/start_button"
         android:gravity="center"
         android:text="tiếp tục"

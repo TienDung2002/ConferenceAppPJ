@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,43 +30,82 @@
             android:textSize="35sp"
             android:textStyle="italic" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:hint="Email"
-            android:inputType="text"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/main_white"
             android:textColorHint="@color/main_white"
-            android:textSize="20sp" />
+            app:boxStrokeColor="@color/main_white"
+            app:boxStrokeErrorColor="@color/main_yellow">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ET_email_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/transparent_background"
+                android:inputType="text"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/main_white"
+                android:textColorHint="@color/main_white"
+                android:textSize="17sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!-- gạch dưới -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_margin="5dp"
             android:background="@color/main_white"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" />
 
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Mật khẩu"
-            android:inputType="textPassword"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textColor="@color/main_white"
-            android:textColorHint="@color/main_white"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="Mật khẩu"
+                android:textColorHint="@color/main_white"
+                app:boxStrokeColor="@color/main_white"
+                app:boxStrokeErrorColor="@color/main_yellow">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/logPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/transparent_background"
+                    android:inputType="textPassword"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/main_white"
+                    android:textColorHint="@color/main_white"
+                    android:textSize="17sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/ShowPassBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/eye_open"
+                android:contentDescription="Hiện/ẩn password"
+                app:tint="@color/main_white" />
+        </LinearLayout>
         <!-- gạch dưới -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_margin="5dp"
             android:background="@color/main_white"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" />
@@ -74,8 +114,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,28 +123,29 @@
                 android:layout_marginEnd="5dp"
                 android:text="Chưa có tài khoản?"
                 android:textColor="@color/main_white"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <TextView
+                android:id="@+id/goToRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="Đăng ký"
-                android:textColor="@color/main_white"
-                android:textSize="18sp"/>
+                android:textColor="@color/main_yellow"
+                android:textSize="17sp" />
         </LinearLayout>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/finishedLogin_Btn"
         android:layout_width="240dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="50dp"
         android:alpha="0.9"
         android:background="@drawable/start_button"
         android:text="Đăng nhập"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
 </FrameLayout>
