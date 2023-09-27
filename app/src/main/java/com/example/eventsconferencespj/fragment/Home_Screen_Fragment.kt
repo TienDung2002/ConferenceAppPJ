@@ -1,21 +1,20 @@
-package com.example.eventsconferencespj
+package com.example.eventsconferencespj.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.eventsconferencespj.R
 
-class Home : Fragment() {
+class Home_Screen_Fragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val homePage = inflater.inflate(R.layout.fragment_home, container, false)
-//        val button = homePage.findViewById<Button>(R.id.name)
-
-
-        return homePage
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home__screen_, container, false)
     }
+
 }
