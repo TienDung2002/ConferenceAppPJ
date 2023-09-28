@@ -40,25 +40,28 @@ class LogIn_Fragment : Fragment() {
         }
 
         // Truy cập vào home screen
-        goToHomeScreen.setOnClickListener {
-            val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
-
-            if (email.isEmpty()) {
-                emailTextInputLayout.error = "Vui lòng nhập email"
-            } else {
-                emailTextInputLayout.error = null
-            }
-
-            if (password.isEmpty()) {
-                passwordTextInputLayout.error = "Vui lòng nhập mật khẩu"
-            } else {
-                passwordTextInputLayout.error = null
-            }
-
-            if(email.isNotEmpty() && password.isNotEmpty()) {
-                findNavController().navigate(R.id.action_logIn_Fragment_to_home2)
-            }
+//        goToHomeScreen.setOnClickListener {
+//            val email = emailEditText.text.toString()
+//            val password = passwordEditText.text.toString()
+//
+//            if (email.isEmpty()) {
+//                emailTextInputLayout.error = "Vui lòng nhập email"
+//            } else {
+//                emailTextInputLayout.error = null
+//            }
+//
+//            if (password.isEmpty()) {
+//                passwordTextInputLayout.error = "Vui lòng nhập mật khẩu"
+//            } else {
+//                passwordTextInputLayout.error = null
+//            }
+//
+//            if(email.isNotEmpty() && password.isNotEmpty()) {
+//                findNavController().navigate(R.id.action_logIn_Fragment_to_home2)
+//            }
+//        }
+        goToHomeScreen.setOnClickListener{
+            findNavController().navigate(R.id.action_logIn_Fragment_to_home2)
         }
 
         // Check trường trống
