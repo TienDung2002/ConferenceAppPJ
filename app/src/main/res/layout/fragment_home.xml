@@ -49,7 +49,7 @@
         android:id="@+id/greeting_wrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +72,7 @@
                     android:gravity="start"
                     android:text="Chào"
                     android:textColor="@color/main_white"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/user_name"
@@ -81,7 +81,7 @@
                     android:layout_marginStart="5dp"
                     android:text="Dũng"
                     android:textColor="@color/main_white"
-                    android:textSize="21sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
         android:id="@+id/search_bar_wrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/greeting_wrap"
         tools:layout_editor_absoluteX="20dp">
 
@@ -124,7 +124,6 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/white_rounded_search"
                 android:closeIcon="@drawable/searchbar_close"
                 android:iconifiedByDefault="false"
@@ -139,7 +138,7 @@
         android:id="@+id/navigation_iconWrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -148,11 +147,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3" />
 
             <ImageButton
                 android:id="@+id/nav_home"
@@ -178,9 +172,9 @@
 
             <ImageButton
                 android:id="@+id/nav_notify"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/toolbar_notify_icon" />
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/toolbar_bills_icon" />
 
             <Space
                 android:layout_width="0dp"
@@ -192,22 +186,28 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/toolbar_heart_icon" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3" />
         </LinearLayout>
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/title_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Phổ biến"
+        android:textColor="@color/main_white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar_wrap" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/horizontal_ListConf"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="370dp"
+        android:background="@color/main_white"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/navigation_iconWrap"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar_wrap"
-        tools:layout_editor_absoluteX="20dp"
-        android:background="@color/main_white"/>
+        app:layout_constraintTop_toBottomOf="@+id/title_list"
+        app:layout_constraintVertical_bias="0.3"
+        tools:layout_editor_absoluteX="20dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,22 +8,23 @@
     tools:context=".log.StartFragment">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/background_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.4"
-        android:background="@color/main_black" />
+        android:background="@color/main_black"
+        android:scaleType="centerCrop"/>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/logo_raw"
         android:layout_width="175dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="212dp"
         android:background="@drawable/logo_white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintEnd_toEndOf="@+id/background_img"
+        app:layout_constraintStart_toStartOf="@+id/background_img"
+        app:layout_constraintTop_toTopOf="@+id/background_img" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,25 +33,25 @@
         android:text="CONVENT"
         android:textColor="@color/main_white"
         android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/background_img"
+        app:layout_constraintEnd_toEndOf="@+id/background_img"
+        app:layout_constraintStart_toStartOf="@+id/background_img"
+        app:layout_constraintTop_toBottomOf="@+id/logo_raw"
         app:layout_constraintVertical_bias="0.006" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="250dp"
+        android:layout_width="240dp"
         android:layout_height="60dp"
         android:layout_marginBottom="104dp"
         android:background="@drawable/start_button"
         android:gravity="center"
         android:text="tiếp tục"
         android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/background_img"
+        app:layout_constraintEnd_toEndOf="@+id/background_img"
         app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/background_img" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
