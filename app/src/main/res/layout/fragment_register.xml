@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_black"
     android:padding="15dp"
-    tools:context=".log.LogIn_Fragment">
+    tools:context=".Fragments.log.LogIn_Fragment">
 
     <LinearLayout
         android:layout_width="match_parent"

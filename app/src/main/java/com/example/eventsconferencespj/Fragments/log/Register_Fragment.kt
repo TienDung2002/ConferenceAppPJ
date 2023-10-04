@@ -1,4 +1,4 @@
-package com.example.eventsconferencespj.log
+package com.example.eventsconferencespj.Fragments.log
 
 import android.os.Bundle
 import android.text.InputType
