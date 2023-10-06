@@ -28,7 +28,6 @@ class Home : Fragment() {
         if (searchItem != null) searchItem.setQueryHint(Html.fromHtml("<font color = #ffffff>" + "Tìm kiếm" + "</font>"))
 
 
-
         return homePage
     }
 
