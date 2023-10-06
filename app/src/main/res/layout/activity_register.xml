@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center|top"
     android:background="@color/main_black"
     android:padding="15dp"
-    tools:context=".Fragments.log.LogIn_Fragment">
+    tools:context=".Activities.Log.Register">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="180dp"
@@ -34,14 +35,14 @@
             android:id="@+id/emailTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:hint="Email"
             android:textColorHint="@color/main_white"
             app:boxStrokeColor="@color/main_white"
             app:boxStrokeErrorColor="@color/main_yellow">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ET_email_login"
+                android:id="@+id/ET_email_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/transparent_background"
@@ -52,7 +53,6 @@
                 android:textColorHint="@color/main_white"
                 android:textSize="17sp" />
         </com.google.android.material.textfield.TextInputLayout>
-
         <!-- gạch dưới -->
         <View
             android:layout_width="match_parent"
@@ -61,14 +61,13 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp" />
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passwordTextInputLayout"
+                android:id="@+id/passwordTextInputLayout_1"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -78,7 +77,7 @@
                 app:boxStrokeErrorColor="@color/main_yellow">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/logPass"
+                    android:id="@+id/regisPass_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/transparent_background"
@@ -91,7 +90,55 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
-                android:id="@+id/ShowPassBtn"
+                android:id="@+id/ShowPassBtn_1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/eye_open"
+                android:contentDescription="Hiện/ẩn password"
+                app:tint="@color/main_white" />
+        </LinearLayout>
+        <!-- gạch dưới -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/main_white"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTextInputLayout_2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="Nhập lại mật khẩu"
+                android:textColorHint="@color/main_white"
+                app:boxStrokeColor="@color/main_white"
+                app:boxStrokeErrorColor="@color/main_yellow">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/regisPass_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/transparent_background"
+                    android:inputType="textPassword"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/main_white"
+                    android:textColorHint="@color/main_white"
+                    android:textSize="17sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/ShowPassBtn_2"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="10dp"
@@ -114,38 +161,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="Chưa có tài khoản?"
+                android:text="Đã có tài khoản?"
                 android:textColor="@color/main_white"
                 android:textSize="17sp" />
 
             <TextView
-                android:id="@+id/goToRegister"
+                android:id="@+id/goToLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
-                android:text="Đăng ký"
+                android:text="Đăng nhập"
                 android:textColor="@color/main_yellow"
                 android:textSize="17sp" />
         </LinearLayout>
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/finishedLogin_Btn"
+        android:id="@+id/finishedRegister_Btn"
         android:layout_width="240dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="50dp"
         android:alpha="0.9"
         android:background="@drawable/start_button"
-        android:text="Đăng nhập"
-        android:textSize="20sp" />
-
-</FrameLayout>
+        android:text="Đăng ký"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

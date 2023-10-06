@@ -13,7 +13,22 @@
         android:theme="@style/Theme.EventsConferencesPJ"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.Conf_Detail.ConfeDetail"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.WishList.WishList"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Home.Home_Screen"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Log.Register"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Log.Login"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Log.FirstStart"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,7 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/start_background"
-    tools:context=".Fragments.log.StartFragment">
+    tools:context=".Activities.Log.FirstStart">
+
+
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/fragmentContainerView"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:defaultNavHost="true"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.5"-->
+<!--        app:navGraph="@navigation/my_nav" />-->
 
     <ImageView
         android:id="@+id/background_img"
@@ -40,7 +55,7 @@
         app:layout_constraintVertical_bias="0.006" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonStart"
         android:layout_width="240dp"
         android:layout_height="60dp"
         android:layout_marginBottom="104dp"
@@ -52,6 +67,4 @@
         app:layout_constraintEnd_toEndOf="@+id/background_img"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="@+id/background_img" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

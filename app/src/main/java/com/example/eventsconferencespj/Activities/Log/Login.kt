@@ -1,46 +1,43 @@
-package com.example.eventsconferencespj.Fragments.log
+package com.example.eventsconferencespj.Activities.Log
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
-import android.text.method.PasswordTransformationMethod
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.navigation.fragment.findNavController
+import com.example.eventsconferencespj.Activities.Home.Home_Screen
 import com.example.eventsconferencespj.R
 import com.google.android.material.textfield.TextInputLayout
 
-class LogIn_Fragment : Fragment() {
+class Login : AppCompatActivity() {
     private var isShowPassword = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val loginFrag = inflater.inflate(R.layout.fragment_log_in, container, false)
-        val goToHomeScreen = loginFrag.findViewById<Button>(R.id.finishedLogin_Btn)
-        val goToRegister_Btn = loginFrag.findViewById<TextView>(R.id.goToRegister)
-        // trường EditText
-        val emailEditText = loginFrag.findViewById<EditText>(R.id.ET_email_login)
-        val passwordEditText = loginFrag.findViewById<EditText>(R.id.logPass)
-        // icon show/hide pass
-        val passwordToggleBtn = loginFrag.findViewById<ImageButton>(R.id.ShowPassBtn)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
 
+        val goToHomeScreen = findViewById<Button>(R.id.finishedLogin_Btn)
+        val goToRegisterBtn = findViewById<TextView>(R.id.goToRegister)
+        // Trường EditText
+        val emailEditText = findViewById<EditText>(R.id.ET_email_login)
+        val passwordEditText = findViewById<EditText>(R.id.logPass)
+        // Icon show/hide pass
+        val passwordToggleBtn = findViewById<ImageButton>(R.id.ShowPassBtn)
 
-        val emailTextInputLayout = loginFrag.findViewById<TextInputLayout>(R.id.emailTextInputLayout)
-        val passwordTextInputLayout = loginFrag.findViewById<TextInputLayout>(R.id.passwordTextInputLayout)
+        val emailTextInputLayout = findViewById<TextInputLayout>(R.id.emailTextInputLayout)
+        val passwordTextInputLayout = findViewById<TextInputLayout>(R.id.passwordTextInputLayout)
 
-        goToRegister_Btn.setOnClickListener {
-            findNavController().navigate(R.id.action_logIn_Fragment_to_register_Fragment)
+        goToRegisterBtn.setOnClickListener {
+            // Thực hiện chuyển đến màn hình đăng ký
+            val intent = Intent(this, Register::class.java)
+            startActivity(intent)
         }
 
         // Truy cập vào home screen
-//        goToHomeScreen.setOnClickListener {
+        goToHomeScreen.setOnClickListener {
 //            val email = emailEditText.text.toString()
 //            val password = passwordEditText.text.toString()
 //
@@ -56,12 +53,15 @@ class LogIn_Fragment : Fragment() {
 //                passwordTextInputLayout.error = null
 //            }
 //
-//            if(email.isNotEmpty() && password.isNotEmpty()) {
-//                findNavController().navigate(R.id.action_logIn_Fragment_to_home2)
+//            if (email.isNotEmpty() && password.isNotEmpty()) {
+//                // Sau khi đăng nhập thành công, bạn có thể chuyển đến màn hình chính
+//                val intent = Intent(this, Home_Screen::class.java)
+//                startActivity(intent)
+//                finish()
 //            }
-//        }
-        goToHomeScreen.setOnClickListener{
-            findNavController().navigate(R.id.action_logIn_Fragment_to_home2)
+            val intent = Intent(this, Home_Screen::class.java)
+            startActivity(intent)
+            finish()
         }
 
         // Check trường trống
@@ -91,7 +91,5 @@ class LogIn_Fragment : Fragment() {
                 passwordEditText.setSelection(passwordEditText.text.length)
             }
         }
-
-        return loginFrag
     }
 }
