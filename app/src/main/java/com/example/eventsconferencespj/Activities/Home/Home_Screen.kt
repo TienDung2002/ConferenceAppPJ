@@ -3,6 +3,7 @@ package com.example.eventsconferencespj.Activities.Home
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.SearchView
 import androidx.lifecycle.Observer
@@ -32,14 +33,13 @@ class Home_Screen : AppCompatActivity() {
         navLocation.setOnClickListener {
             viewModel.onNavLocationClicked()
         }
-        viewModel.navigateToLocation.observe(this, Observer {
+        viewModel.openLocation.observe(this, Observer {
             // Tạo Fragment cho fragment_location
             val fragmentLocation = Location_Fragment()
             // Mở Fragment
-            val fragmentManager = supportFragmentManager
-            val transaction = fragmentManager.beginTransaction()
+            val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragment_container_location, fragmentLocation)
-            transaction.addToBackStack(null) // Để có thể quay lại Fragment trước đó
+            transaction.addToBackStack(null) // Để quay lại Fragment trước đó
             transaction.commit()
         })
     }

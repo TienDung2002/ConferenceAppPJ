@@ -7,12 +7,12 @@ import com.example.eventsconferencespj.Fragments.Location.Location_Fragment
 import com.example.eventsconferencespj.R
 
 class HomeScreenViewModel : ViewModel() {
-    private val _navigateToLocation = MutableLiveData<Unit>()
-    val navigateToLocation: LiveData<Unit>
-        get() = _navigateToLocation
+    private val navigateToLocation = MutableLiveData<Unit>()
+    val openLocation: LiveData<Unit>
+        get() = navigateToLocation
 
     fun onNavLocationClicked() {
         // Xử lý khi nhấn vào nav_location
-        _navigateToLocation.value = Unit
+        navigateToLocation.value = Unit
     }
 }

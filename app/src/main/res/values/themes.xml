@@ -5,10 +5,12 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
-
     <style name="Theme.EventsConferencesPJ" parent="Base.Theme.EventsConferencesPJ" />
 
     <style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:editTextColor">#FFFFFF</item>
+    </style>
+    <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

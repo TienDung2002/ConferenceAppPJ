@@ -14,4 +14,15 @@
         android:layout_gravity="center_vertical|center_horizontal"
         android:textSize="35sp"/>
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@drawable/arrow_back"
+        android:textColor="@color/main_white" />
+
 </FrameLayout>
