@@ -9,18 +9,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="COMING SOON"
+        android:text="Đang phát triển"
         android:textColor="@color/main_white"
         android:layout_gravity="center_vertical|center_horizontal"
         android:textSize="35sp"/>
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="start"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="top|start"
+        android:text="Trang chủ"
         android:background="?attr/selectableItemBackground"
         android:drawableStart="@drawable/arrow_back"
         android:textColor="@color/main_white" />

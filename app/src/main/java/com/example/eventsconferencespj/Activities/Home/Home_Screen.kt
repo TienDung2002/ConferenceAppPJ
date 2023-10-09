@@ -29,8 +29,7 @@ class Home_Screen : AppCompatActivity() {
         if (searchItem != null) searchItem.setQueryHint(Html.fromHtml("<font color = #ffffff>" + "Tìm kiếm" + "</font>"))
 
         // Xử lý sự kiện khi nhấn vào nav_location
-        val navLocation = binding.navLocation
-        navLocation.setOnClickListener {
+        binding.navLocation.setOnClickListener {
             viewModel.onNavLocationClicked()
         }
         viewModel.openLocation.observe(this, Observer {

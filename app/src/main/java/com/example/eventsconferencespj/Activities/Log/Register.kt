@@ -38,6 +38,7 @@ class Register : AppCompatActivity() {
             // Thực hiện chuyển đến màn hình đăng nhập (Login)
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
+            finish()
         }
 
         button.setOnClickListener {

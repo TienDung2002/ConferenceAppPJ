@@ -4,6 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_black"
+    android:padding="15dp"
     tools:context=".Activities.Payments.Payments">
+
+    <!--Note: làm button chọn ngày thuê phòng theo range-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:text="Thông tin"
+            android:textColor="@color/main_white"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_rounded_payments"
+            android:padding="15dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginEnd="15dp"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/confe_img"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/event_room_demo"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/confName_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/cardView"
+                android:layout_marginBottom="5dp"
+                android:text="Trung tâm Hội nghị quốc gia "
+                android:textColor="@color/main_white"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pricePerDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/confName_payment"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/cardView"
+                android:text="800.000.000"
+                android:textColor="@color/main_yellow"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/moneyType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/confName_payment"
+                android:layout_toEndOf="@+id/pricePerDay"
+                android:layout_alignBaseline="@+id/pricePerDay"
+                android:text="VNĐ"
+                android:textColor="@color/main_white"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/daysRent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/moneyType"
+                android:layout_toEndOf="@+id/moneyType"
+                android:text="/ngày"
+                android:textColor="@color/main_white"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/viewDetailBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/pricePerDay"
+                android:layout_toEndOf="@+id/cardView"
+                android:text="Xem chi tiết"
+                android:background="?attr/selectableItemBackground"
+                android:drawableEnd="@drawable/arrow_forward"
+                android:textColor="@color/main_white" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_white"
+            android:text="Phương thức thanh toán"
+            android:textSize="21sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <RadioGroup
+                    android:id="@+id/paymentMethodGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/visaRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Visa"
+                        android:textColor="@color/main_white"/>
+
+                    <RadioButton
+                        android:id="@+id/bankingRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Banking" />
+
+                    <RadioButton
+                        android:id="@+id/mastercardRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mastercard" />
+
+                    <RadioButton
+                        android:id="@+id/cashRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tiền mặt" />
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/cardNumberEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/paymentMethodGroup"
+                    android:hint="Nhập số thẻ"
+                    android:inputType="text" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
