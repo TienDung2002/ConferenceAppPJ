@@ -6,6 +6,7 @@
     <color name="main_dark_yellow">#FFA300</color>
     <color name="main_blue">#007BFF</color>
     <color name="main_red">#ED0404</color>
+    <color name="checkedPayment">#43FFDC9E</color>
 
     <string name="sign_up">Sign up</string>
 </resources>

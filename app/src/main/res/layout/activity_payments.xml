@@ -15,19 +15,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="10dp"
-            android:text="Thông tin"
-            android:textColor="@color/main_white"
-            android:textSize="20sp" />
-
         <RelativeLayout
+            android:id="@+id/inforBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:background="@drawable/white_rounded_payments"
             android:padding="15dp">
 
@@ -53,8 +45,9 @@
                 android:id="@+id/confName_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="2.5dp"
+                android:layout_marginTop="2.5dp"
                 android:layout_toEndOf="@id/cardView"
-                android:layout_marginBottom="5dp"
                 android:text="Trung tâm Hội nghị quốc gia "
                 android:textColor="@color/main_white"
                 android:textSize="23sp"
@@ -67,7 +60,7 @@
                 android:layout_below="@+id/confName_payment"
                 android:layout_marginEnd="8dp"
                 android:layout_toEndOf="@+id/cardView"
-                android:text="800.000.000"
+                android:text="80.000.000"
                 android:textColor="@color/main_yellow"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -77,8 +70,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/confName_payment"
-                android:layout_toEndOf="@+id/pricePerDay"
                 android:layout_alignBaseline="@+id/pricePerDay"
+                android:layout_toEndOf="@+id/pricePerDay"
                 android:text="VNĐ"
                 android:textColor="@color/main_white"
                 android:textSize="17sp" />
@@ -99,71 +92,237 @@
                 android:layout_height="30dp"
                 android:layout_below="@+id/pricePerDay"
                 android:layout_toEndOf="@+id/cardView"
-                android:text="Xem chi tiết"
                 android:background="?attr/selectableItemBackground"
                 android:drawableEnd="@drawable/arrow_forward"
+                android:text="Xem chi tiết"
                 android:textColor="@color/main_white" />
         </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/main_white"
-            android:text="Phương thức thanh toán"
-            android:textSize="21sp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"/>
+            android:text="Phương thức thanh toán"
+            android:textColor="@color/main_white"
+            android:textSize="21sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
 
                 <RadioGroup
                     android:id="@+id/paymentMethodGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:checkedButton="@id/visaBtn"
                     android:orientation="vertical">
 
                     <RadioButton
-                        android:id="@+id/visaRadioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/visaBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/custom_checked_icon"
+                        android:button="@drawable/ic_visa"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="0dp"
+                        android:layout_marginBottom="2.5dp"
+                        android:layout_marginTop="2.5dp"
                         android:text="Visa"
-                        android:textColor="@color/main_white"/>
+                        android:textColor="@color/main_white"
+                        android:textSize="18sp" />
 
                     <RadioButton
-                        android:id="@+id/bankingRadioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Banking" />
+                        android:id="@+id/paypalBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/custom_checked_icon"
+                        android:button="@drawable/ic_paypal"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="0dp"
+                        android:layout_marginBottom="2.5dp"
+                        android:layout_marginTop="2.5dp"
+                        android:text="Paypal"
+                        android:textColor="@color/main_white"
+                        android:textSize="18sp" />
 
                     <RadioButton
-                        android:id="@+id/mastercardRadioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mastercard" />
+                        android:id="@+id/mastercardBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/custom_checked_icon"
+                        android:button="@drawable/ic_mastercard"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="0dp"
+                        android:layout_marginBottom="2.5dp"
+                        android:layout_marginTop="2.5dp"
+                        android:text="Mastercard"
+                        android:textColor="@color/main_white"
+                        android:textSize="18sp" />
 
                     <RadioButton
-                        android:id="@+id/cashRadioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tiền mặt" />
+                        android:id="@+id/ipayBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/custom_checked_icon"
+                        android:button="@drawable/ic_banking"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="0dp"
+                        android:layout_marginBottom="2.5dp"
+                        android:layout_marginTop="2.5dp"
+                        android:text="Smart Banking"
+                        android:textColor="@color/main_white"
+                        android:textSize="18sp" />
+
+                    <RadioButton
+                        android:id="@+id/cashBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/custom_checked_icon"
+                        android:button="@drawable/ic_cash"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="0dp"
+                        android:layout_marginTop="2.5dp"
+                        android:text="Tiền mặt"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/main_white"
+                        android:textSize="18dp" />
                 </RadioGroup>
 
-                <EditText
-                    android:id="@+id/cardNumberEditText"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cardNumberTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/paymentMethodGroup"
-                    android:hint="Nhập số thẻ"
-                    android:inputType="text" />
+                    android:hint="Thêm số thẻ..."
+                    android:textColorHint="@color/main_white">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ET_email_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/transparent_background"
+                        android:inputType="text"
+                        android:paddingTop="13dp"
+                        android:paddingBottom="5dp"
+                        android:textColor="@color/main_white"
+                        android:textColorHint="@color/main_white"
+                        android:textSize="17sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <!-- gạch dưới -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/cardNumberTextInput"
+                    android:background="@color/main_white"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
             </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/paymentDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/priceDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng phải trả:"
+                        android:textSize="18sp"
+                        android:textColor="@color/main_white"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="2.5dp"
+                        android:layout_marginTop="2.5dp"/>
+
+                    <TextView
+                        android:id="@+id/deposit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đặt cọc (%):"
+                        android:textSize="18sp"
+                        android:textColor="@color/main_white"
+                        android:layout_below="@+id/priceDetail"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="2.5dp"
+                        android:layout_marginTop="2.5dp"/>
+
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng thanh toán:"
+                        android:textSize="18sp"
+                        android:textColor="@color/main_white"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/deposit"/>
+
+                    <TextView
+                        android:id="@+id/priceDetailNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="80.000.000"
+                        android:textColor="@color/main_white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignBaseline="@+id/priceDetail"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:id="@+id/depositNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30"
+                        android:textColor="@color/main_white"
+                        android:layout_alignBaseline="@+id/deposit"
+                        android:layout_below="@+id/priceDetailNum"
+                        android:layout_toStartOf="@+id/depositNumPercent"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/depositNumPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="%"
+                        android:textColor="@color/main_white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignBaseline="@+id/deposit"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/totalNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24.000.000"
+                        android:textColor="@color/main_white"
+                        android:layout_below="@+id/depositNum"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignBaseline="@+id/total"
+                        android:textSize="18sp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/goToPaymentBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thanh toán"
+                android:textSize="18sp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/start_button"/>
         </LinearLayout>
     </LinearLayout>
 
