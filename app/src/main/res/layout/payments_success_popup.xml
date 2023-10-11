@@ -3,4 +3,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/overlay_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/main_black"
+            android:alpha="0.6" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:background="@drawable/payment_success_radius"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/ic_payment_success"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thanh toán thành công"
+                android:textColor="@color/main_white"
+                android:textSize="26sp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/icon"
+                android:layout_centerHorizontal="true"/>
+            <Button
+                android:id="@+id/finishBtn"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:background="@drawable/start_button"
+                android:text="Hoàn tất"
+                android:textSize="20sp"
+                android:layout_marginBottom="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

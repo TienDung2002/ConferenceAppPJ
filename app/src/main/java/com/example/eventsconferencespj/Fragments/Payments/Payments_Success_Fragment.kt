@@ -1,11 +1,12 @@
 package com.example.eventsconferencespj.Fragments.Payments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.eventsconferencespj.R
+
 
 class Payments_Success_Fragment : Fragment() {
 
@@ -13,7 +14,8 @@ class Payments_Success_Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_payments__success, container, false)
+        val popup = inflater.inflate(R.layout.payments_success_popup, container, false)
+
+        return popup
     }
 }
