@@ -66,7 +66,7 @@
                 android:layout_marginEnd="12dp"
                 android:text="Đánh giá"
                 android:textColor="@color/main_white"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
 
             <RatingBar
                 android:id="@+id/ratingID"
@@ -88,7 +88,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/test_ReviewDescription"
                 android:textColor="@color/main_white"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
         </RelativeLayout>
     </LinearLayout>
 

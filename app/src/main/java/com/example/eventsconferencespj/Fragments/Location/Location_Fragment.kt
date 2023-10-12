@@ -1,6 +1,7 @@
 package com.example.eventsconferencespj.Fragments.Location
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,18 +10,19 @@ import android.widget.Button
 import com.example.eventsconferencespj.R
 
 class Location_Fragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("test", "location đã được kích hoạt 1")
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_location_, container, false)
-        val backButton = view.findViewById<Button>(R.id.backButton)
-        backButton.setOnClickListener {
-            // Xử lý khi nút trở lại được nhấn
-            activity?.supportFragmentManager?.popBackStack()
-        }
+//        val backButton = view.findViewById<Button>(R.id.backButton)
+//        backButton.setOnClickListener {
+//            // Xử lý khi nút trở lại được nhấn
+//            activity?.supportFragmentManager?.popBackStack()
+//            Log.d("test", "location đã được kích hoạt")
+//        }
         return view
     }
 }

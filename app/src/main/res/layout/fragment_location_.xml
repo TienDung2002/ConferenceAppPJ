@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="top|start"
-        android:text="Trang chủ"
+        android:text="Trở lại"
         android:background="?attr/selectableItemBackground"
         android:drawableStart="@drawable/arrow_back"
         android:textColor="@color/main_white" />

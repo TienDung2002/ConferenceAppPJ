@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Thanh toán thành công"
                 android:textColor="@color/main_white"
-                android:textSize="26sp"
+                android:textSize="22sp"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/icon"
                 android:layout_centerHorizontal="true"/>
