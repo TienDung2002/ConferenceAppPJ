@@ -16,7 +16,9 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.eventsconferencespj.Activities.Location
 import com.example.eventsconferencespj.Activities.Log.Login
+import com.example.eventsconferencespj.Fragments.Location.Location_Fragment
 import com.example.eventsconferencespj.R
 import com.example.eventsconferencespj.databinding.ActivityHomeScreenBinding
 import com.google.android.material.navigation.NavigationView
@@ -50,13 +52,9 @@ class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-        navigationView.bringToFront()
+//        navigationView.bringToFront()
+        // Đăng ký sự kiện cho NavigationView
         navigationView.setNavigationItemSelectedListener(this)
-
-
-        binding.menuBtn.setOnClickListener {
-            drawerLayout.openDrawer(GravityCompat.START)
-        }
 
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId){
@@ -72,11 +70,11 @@ class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
 
         // Xử lý sự kiện khi nhấn vào nav_location
-//        binding.navLocation.setOnClickListener {
-////            viewModel.onNavLocationClicked()
-//            val intent = Intent(this, Location::class.java)
-//            startActivity(intent)
-//        }
+        binding.navLocation.setOnClickListener {
+//            viewModel.onNavLocationClicked()
+            val intent = Intent(this, Location::class.java)
+            startActivity(intent)
+        }
 //        viewModel.openLocation.observe(this, Observer {
 //            // Tạo Fragment cho fragment_location
 //            val fragmentLocation = Location_Fragment()
@@ -93,6 +91,15 @@ class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         when (item.itemId) {
 //                R.nav_home -> supportFragmentManager.beginTransaction()
 //                    .replace(R.id.fragment_container, HomeFragment()).commit()
+            R.id.nav_moreinf -> {
+                Toast.makeText(this, "Đang phát triển", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_settings -> {
+                Toast.makeText(this, "Đang phát triển", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_rateapp -> {
+                Toast.makeText(this, "Đang phát triển", Toast.LENGTH_SHORT).show()
+            }
             R.id.nav_signout -> {
                 val intent = Intent(this, Login::class.java)
                 startActivity(intent)
@@ -109,5 +116,4 @@ class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         if(toogle.onOptionsItemSelected(item)) return true
         return super.onOptionsItemSelected(item)
     }
-
 }

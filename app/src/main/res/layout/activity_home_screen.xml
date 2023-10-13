@@ -25,14 +25,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
-            <ImageButton
-                android:id="@+id/menuBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="-5dp"
-                android:background="@drawable/menu_icon" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/menuBtn"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginStart="-5dp"-->
+<!--                android:background="@drawable/menu_icon" />-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
@@ -45,8 +45,8 @@
 
                 <ImageView
                     android:id="@+id/user_ava"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/user_ava" />
             </androidx.cardview.widget.CardView>
@@ -157,8 +157,8 @@
 
                 <ImageButton
                     android:id="@+id/nav_home"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:background="@drawable/toolbar_home_icon_2" />
 
                 <Space
@@ -168,8 +168,8 @@
 
                 <ImageButton
                     android:id="@+id/nav_location"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:background="@drawable/toolbar_location_icon" />
 
                 <Space
@@ -178,9 +178,9 @@
                     android:layout_weight="1" />
 
                 <ImageButton
-                    android:id="@+id/nav_notify"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:id="@+id/nav_bills"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
                     android:background="@drawable/toolbar_bills_icon" />
 
                 <Space
@@ -190,8 +190,8 @@
 
                 <ImageButton
                     android:id="@+id/nav_heart"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:background="@drawable/toolbar_heart_icon" />
 
                 <!-- Thêm imagebutton profile rồi mở ra acitivy profile-->
@@ -236,6 +236,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
+        app:theme="@style/ToolbarColoredBackArrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -247,7 +248,6 @@
             android:layout_height="650dp"
             android:layout_gravity="bottom|start"
             app:menu="@menu/nav_menu"
-            app:headerLayout="@layout/nav_menu_header"
             android:background="@drawable/menu_background_radius"
             app:itemTextAppearance="@style/NavigationViewStyle"
             app:itemIconTint="@color/main_black"
