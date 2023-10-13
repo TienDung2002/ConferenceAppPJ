@@ -24,7 +24,8 @@ import com.google.android.material.navigation.NavigationView
 class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityHomeScreenBinding
     private lateinit var viewModel: HomeScreenViewModel
-    lateinit var drawerLayout : DrawerLayout
+    private lateinit var drawerLayout : DrawerLayout
+    private lateinit var toogle : ActionBarDrawerToggle
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,17 +41,33 @@ class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         if (searchItem != null) searchItem.setQueryHint(Html.fromHtml("<font color = #ffffff>" + "Tìm kiếm" + "</font>"))
 
 
-        // menu + toolbar
         val toolbar = binding.toolbar
         val navigationView = binding.navView
         drawerLayout = binding.drawerlayout
+        // toolbar
         setSupportActionBar(toolbar)
-        navigationView.setNavigationItemSelectedListener(this)
+        // drawer menu
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
         drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navigationView.bringToFront()
+        navigationView.setNavigationItemSelectedListener(this)
+
 
         binding.menuBtn.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId){
+                R.id.nav_signout -> {
+                    val intent = Intent(this, Login::class.java)
+                    startActivity(intent)
+                    finish()
+                    Toast.makeText(this, "Bạn đã đăng xuất", Toast.LENGTH_SHORT).show()
+                }
+            }
+            true
         }
 
 
@@ -71,7 +88,7 @@ class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 //        })
     }
 
-    // Điều hướng menu
+    // Điều hướng trong thanh menu
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 //                R.nav_home -> supportFragmentManager.beginTransaction()
@@ -87,4 +104,10 @@ class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         binding.drawerlayout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toogle.onOptionsItemSelected(item)) return true
+        return super.onOptionsItemSelected(item)
+    }
+
 }
