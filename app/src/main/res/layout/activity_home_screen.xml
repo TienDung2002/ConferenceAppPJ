@@ -1,256 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawerlayout"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start"
+    android:background="@color/main_black"
+    android:padding="20dp"
     tools:context=".Activities.Home.Home_Screen">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
+        android:id="@+id/menu_ava_wrap"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/main_black"
-        android:padding="20dp">
-
-        <RelativeLayout
-            android:id="@+id/menu_ava_wrap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/menuBtn"-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:layout_alignParentStart="true"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:layout_marginStart="-5dp"-->
-<!--                android:background="@drawable/menu_icon" />-->
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                app:cardCornerRadius="50dp">
-
-                <ImageView
-                    android:id="@+id/user_ava"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/user_ava" />
-            </androidx.cardview.widget.CardView>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/greeting_wrap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu_ava_wrap">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:text="Chào"
-                        android:textColor="@color/main_white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/user_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Dũng"
-                        android:textColor="@color/main_white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=","
-                        android:textColor="@color/main_white"
-                        android:textSize="22sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DẠO XEM"
-                    android:textColor="@color/main_white"
-                    android:textSize="28sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PHÒNG CỦA BẠN"
-                    android:textColor="@color/main_white"
-                    android:textSize="28sp" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/search_bar_wrap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/greeting_wrap"
-            tools:layout_editor_absoluteX="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true">
-
-                <SearchView
-                    android:id="@+id/search_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:background="@drawable/white_rounded_search"
-                    android:closeIcon="@drawable/searchbar_close"
-                    android:iconifiedByDefault="false"
-                    android:queryBackground="@drawable/transparent_background"
-                    android:searchIcon="@drawable/search_icon"
-                    android:theme="@style/MySearchViewStyle" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <!-- icon navigate-->
-        <RelativeLayout
-            android:id="@+id/navigation_iconWrap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/nav_home"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/toolbar_home_icon_2" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <ImageButton
-                    android:id="@+id/nav_location"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/toolbar_location_icon" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <ImageButton
-                    android:id="@+id/nav_bills"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:background="@drawable/toolbar_bills_icon" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <ImageButton
-                    android:id="@+id/nav_heart"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/toolbar_heart_icon" />
-
-                <!-- Thêm imagebutton profile rồi mở ra acitivy profile-->
-            </LinearLayout>
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/title_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Phổ biến"
-            android:textColor="@color/main_white"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_bar_wrap" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/horizontal_ListConf"
-            android:layout_width="match_parent"
-            android:layout_height="360dp"
-            android:background="@color/main_white"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/navigation_iconWrap"
-            app:layout_constraintTop_toBottomOf="@+id/title_list"
-            app:layout_constraintVertical_bias="0.3"
-            tools:layout_editor_absoluteX="20dp" />
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_container_location"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        app:theme="@style/ToolbarColoredBackArrow"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <!--Menu-->
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="320dp"
-            android:layout_height="650dp"
-            android:layout_gravity="bottom|start"
-            app:menu="@menu/nav_menu"
-            android:background="@drawable/menu_background_radius"
-            app:itemTextAppearance="@style/NavigationViewStyle"
-            app:itemIconTint="@color/main_black"
-            app:itemTextColor="@color/main_black"
-            app:itemIconSize="28dp"/>
-</androidx.drawerlayout.widget.DrawerLayout>
+<!--        <ImageButton-->
+<!--            android:id="@+id/menuBtn"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginStart="-5dp"-->
+<!--            android:background="@drawable/menu_icon" />-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:id="@+id/user_ava"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user_ava" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/greeting_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_ava_wrap">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Chào"
+                    android:textColor="@color/main_white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Dũng"
+                    android:textColor="@color/main_white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=","
+                    android:textColor="@color/main_white"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DẠO XEM"
+                android:textColor="@color/main_white"
+                android:textSize="28sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PHÒNG CỦA BẠN"
+                android:textColor="@color/main_white"
+                android:textSize="28sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/search_bar_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/greeting_wrap"
+        tools:layout_editor_absoluteX="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/white_rounded_search"
+                android:closeIcon="@drawable/searchbar_close"
+                android:iconifiedByDefault="false"
+                android:queryBackground="@drawable/transparent_background"
+                android:searchIcon="@drawable/search_icon"
+                android:theme="@style/MySearchViewStyle" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- icon navigate-->
+    <RelativeLayout
+        android:id="@+id/navigation_iconWrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/nav_home"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/toolbar_home_icon_2" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/nav_location"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/toolbar_location_icon" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/nav_notify"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/toolbar_ordered_icon" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/nav_heart"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/toolbar_heart_icon" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/nav_profile"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/toolbar_user_icon" />
+
+            <!-- Thêm imagebutton profile rồi mở ra acitivy profile-->
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/title_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Phổ biến"
+        android:textColor="@color/main_white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar_wrap" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/horizontal_ListConf"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:background="@color/main_white"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/navigation_iconWrap"
+        app:layout_constraintTop_toBottomOf="@+id/title_list"
+        app:layout_constraintVertical_bias="0.3"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_location"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
