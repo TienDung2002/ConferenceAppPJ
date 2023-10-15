@@ -16,7 +16,7 @@
             android:name=".Activities.Users.User_Detail"
             android:exported="false" />
         <activity
-            android:name=".Activities.Location"
+            android:name=".Activities.Location.Location"
             android:exported="false"
             android:theme="@style/FullScreenTheme" />
         <activity

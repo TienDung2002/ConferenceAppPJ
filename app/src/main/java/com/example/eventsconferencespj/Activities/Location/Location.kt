@@ -1,4 +1,4 @@
-package com.example.eventsconferencespj.Activities
+package com.example.eventsconferencespj.Activities.Location
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
