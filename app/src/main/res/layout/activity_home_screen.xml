@@ -163,6 +163,7 @@
                 android:id="@+id/nav_location"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/toolbar_location_icon" />
 
             <Space
@@ -174,6 +175,7 @@
                 android:id="@+id/nav_notify"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/toolbar_ordered_icon" />
 
             <Space
@@ -185,6 +187,7 @@
                 android:id="@+id/nav_heart"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/toolbar_heart_icon" />
 
             <Space
@@ -196,8 +199,8 @@
                 android:id="@+id/nav_profile"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/toolbar_user_icon" />
-
         </LinearLayout>
     </RelativeLayout>
 

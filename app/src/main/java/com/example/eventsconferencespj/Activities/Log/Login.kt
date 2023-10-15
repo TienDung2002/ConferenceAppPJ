@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -41,20 +42,20 @@ class Login : AppCompatActivity() {
 //            val email = emailEditText.text.toString()
 //            val password = passwordEditText.text.toString()
 //
-//            if (email.isEmpty()) {
-//                emailTextInputLayout.error = "Vui lòng nhập email"
+//            if (email.isEmpty() || !isEmailValid(email)) {
+//                emailTextInputLayout.error = "Email trống hoặc không hợp lệ!"
 //            } else {
 //                emailTextInputLayout.error = null
 //            }
 //
 //            if (password.isEmpty()) {
-//                passwordTextInputLayout.error = "Vui lòng nhập mật khẩu"
+//                passwordTextInputLayout.error = "Nhập mật khẩu"
 //            } else {
 //                passwordTextInputLayout.error = null
 //            }
 //
-//            if (email.isNotEmpty() && password.isNotEmpty()) {
-//                // Sau khi đăng nhập thành công, bạn có thể chuyển đến màn hình chính
+//            if ((email.isNotEmpty() && isEmailValid(email)) && password.isNotEmpty()) {
+//                // Chuyển đến màn hình chính
 //                val intent = Intent(this, Home_Screen::class.java)
 //                startActivity(intent)
 //                finish()
@@ -90,5 +91,12 @@ class Login : AppCompatActivity() {
                 passwordEditText.setSelection(passwordEditText.text.length)
             }
         }
+    }
+
+    // check định dạng email hợp lệ
+    private fun isEmailValid(email: String): Boolean {
+        // Sử dụng mẫu sẵn có cho email
+        val pattern = Patterns.EMAIL_ADDRESS
+        return pattern.matcher(email).matches()
     }
 }

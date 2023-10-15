@@ -178,6 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="Đăng nhập"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:textColor="@color/main_yellow"
                 android:textSize="17sp" />
         </LinearLayout>
@@ -193,6 +194,7 @@
         android:background="@drawable/start_button"
         android:text="Đăng ký"
         android:textSize="20sp"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

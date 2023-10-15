@@ -135,6 +135,7 @@
                         android:layout_marginBottom="2.5dp"
                         android:layout_marginTop="2.5dp"
                         android:text="Visa"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:textColor="@color/main_white"
                         android:textSize="18sp" />
 
@@ -149,6 +150,7 @@
                         android:layout_marginBottom="2.5dp"
                         android:layout_marginTop="2.5dp"
                         android:text="Paypal"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:textColor="@color/main_white"
                         android:textSize="18sp" />
 
@@ -163,6 +165,7 @@
                         android:layout_marginBottom="2.5dp"
                         android:layout_marginTop="2.5dp"
                         android:text="Mastercard"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:textColor="@color/main_white"
                         android:textSize="18sp" />
 
@@ -177,6 +180,7 @@
                         android:layout_marginBottom="2.5dp"
                         android:layout_marginTop="2.5dp"
                         android:text="Smart Banking"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:textColor="@color/main_white"
                         android:textSize="18sp" />
 
@@ -190,6 +194,7 @@
                         android:paddingEnd="0dp"
                         android:layout_marginTop="2.5dp"
                         android:text="Tiền mặt"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:paddingLeft="10dp"
                         android:textColor="@color/main_white"
                         android:textSize="18dp" />
@@ -322,6 +327,7 @@
                 android:textSize="18sp"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="30dp"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/start_button"/>
         </LinearLayout>
     </LinearLayout>

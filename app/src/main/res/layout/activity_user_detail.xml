@@ -69,8 +69,8 @@
                     android:padding="10dp"
                     android:layout_marginStart="85dp"
                     android:text="Vũ Tiến Dũng"
-                    android:focusable="false"
-                    android:inputType="none"
+                    android:inputType="text"
+                    android:lines="1"
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@+id/name_title"
                     android:background="@drawable/transparent_background"
@@ -104,9 +104,9 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:layout_marginStart="85dp"
-                    android:inputType="phone"
                     android:text="0123456789"
-                    android:focusable="false"
+                    android:inputType="phone"
+                    android:lines="1"
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@+id/phone_title"
                     android:background="@drawable/transparent_background"
@@ -142,9 +142,9 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:layout_marginStart="85dp"
-                    android:inputType="text"
-                    android:focusable="false"
                     android:text="mothaibabon@gmail.com"
+                    android:inputType="text"
+                    android:lines="1"
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@+id/email_title"
                     android:background="@drawable/transparent_background"
@@ -186,7 +186,7 @@
                         android:layout_marginStart="85dp"
                         android:text="123456"
                         android:inputType="textPassword"
-                        android:focusable="false"
+                        android:lines="1"
                         android:layout_alignParentEnd="true"
                         android:layout_alignBaseline="@+id/pass_title"
                         android:background="@drawable/transparent_background"
@@ -201,7 +201,8 @@
                         android:background="@drawable/eye_open"
                         android:padding="10dp"
                         android:layout_alignParentEnd="true"
-                        app:tint="@color/main_white" />
+                        app:tint="@color/main_white"
+                        android:visibility="gone"/>
 
                     <!-- gạch dưới -->
                     <View
@@ -225,19 +226,21 @@
                 android:id="@+id/changeDataUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/goToPaymentBtn"
+                android:layout_above="@+id/logoutBtn"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="70dp"
+                android:layout_marginBottom="60dp"
                 android:background="@drawable/start_button"
-                android:text="Thay đổi thông tin"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="Cập nhật thông tin"
                 android:textSize="17sp" />
 
             <Button
-                android:id="@+id/goToPaymentBtn"
+                android:id="@+id/logoutBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/start_button"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="Đăng xuất"
                 android:textSize="17sp" />
         </RelativeLayout>
