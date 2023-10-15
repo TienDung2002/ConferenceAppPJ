@@ -36,7 +36,7 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Truy cập vào home screen
+        // Truy cập vào home screen, check trường trống
         goToHomeScreen.setOnClickListener {
 //            val email = emailEditText.text.toString()
 //            val password = passwordEditText.text.toString()
@@ -64,9 +64,8 @@ class Login : AppCompatActivity() {
             finish()
         }
 
-        // Check trường trống
+        // show/hide pass
         passwordToggleBtn.setOnClickListener {
-            // Đảm bảo rằng trường mật khẩu sẽ luôn hiển thị ngay lần click đầu tiên.
             if (!isShowPassword) {
                 isShowPassword = true
                 passwordEditText.inputType =

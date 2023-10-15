@@ -7,6 +7,7 @@ import android.text.Html
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import com.example.eventsconferencespj.Activities.Location.Location
+import com.example.eventsconferencespj.Activities.Users.User_Detail
 import com.example.eventsconferencespj.R
 import com.example.eventsconferencespj.databinding.ActivityHomeScreenBinding
 
@@ -28,9 +29,15 @@ class Home_Screen : AppCompatActivity(){
         if (searchItem != null) searchItem.setQueryHint(Html.fromHtml("<font color = #ffffff>" + "Tìm kiếm" + "</font>"))
 
 
-        // Xử lý sự kiện khi nhấn vào nav_location
+        // Nhấn vào nav_location
         binding.navLocation.setOnClickListener {
             val intent = Intent(this, Location::class.java)
+            startActivity(intent)
+        }
+
+        // Nhấn vào nav_profile
+        binding.navProfile.setOnClickListener{
+            val intent = Intent(this, User_Detail::class.java)
             startActivity(intent)
         }
     }

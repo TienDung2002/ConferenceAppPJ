@@ -57,7 +57,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"
-                    android:inputType="text"
                     android:text="Họ tên: "
                     android:layout_alignParentStart="true"
                     android:textColor="@color/main_white"
@@ -70,6 +69,8 @@
                     android:padding="10dp"
                     android:layout_marginStart="85dp"
                     android:text="Vũ Tiến Dũng"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@+id/name_title"
                     android:background="@drawable/transparent_background"
@@ -103,13 +104,16 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:layout_marginStart="85dp"
-                    android:inputType="text"
+                    android:inputType="phone"
                     android:text="0123456789"
+                    android:focusable="false"
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@+id/phone_title"
                     android:background="@drawable/transparent_background"
                     android:textColor="@color/main_white"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    tools:ignore="TextFields" />
+<!--                android:inputType="phone"-->
 
                 <!-- gạch dưới -->
                 <View
@@ -139,12 +143,14 @@
                     android:padding="10dp"
                     android:layout_marginStart="85dp"
                     android:inputType="text"
+                    android:focusable="false"
                     android:text="mothaibabon@gmail.com"
                     android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@+id/email_title"
                     android:background="@drawable/transparent_background"
                     android:textColor="@color/main_white"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    tools:ignore="TextFields" />
 
                 <!-- gạch dưới -->
                 <View
@@ -180,6 +186,7 @@
                         android:layout_marginStart="85dp"
                         android:text="123456"
                         android:inputType="textPassword"
+                        android:focusable="false"
                         android:layout_alignParentEnd="true"
                         android:layout_alignBaseline="@+id/pass_title"
                         android:background="@drawable/transparent_background"
@@ -206,8 +213,6 @@
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp" />
                 </RelativeLayout>
-
-
             </RelativeLayout>
         </LinearLayout>
 
@@ -222,7 +227,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/goToPaymentBtn"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="70dp"
                 android:background="@drawable/start_button"
                 android:text="Thay đổi thông tin"
                 android:textSize="17sp" />
@@ -238,4 +243,16 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="top|start"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@drawable/arrow_back"
+        android:textColor="@color/main_white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

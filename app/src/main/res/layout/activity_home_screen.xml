@@ -198,7 +198,6 @@
                 android:layout_height="30dp"
                 android:background="@drawable/toolbar_user_icon" />
 
-            <!-- Thêm imagebutton profile rồi mở ra acitivy profile-->
         </LinearLayout>
     </RelativeLayout>
 
