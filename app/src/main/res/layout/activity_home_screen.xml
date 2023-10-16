@@ -216,24 +216,24 @@
         app:layout_constraintTop_toBottomOf="@+id/search_bar_wrap" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/horizontal_ListConf"
+        android:id="@+id/HorizontalRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:background="@color/main_white"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/navigation_iconWrap"
         app:layout_constraintTop_toBottomOf="@+id/title_list"
-        app:layout_constraintVertical_bias="0.3"
-        tools:layout_editor_absoluteX="20dp" />
+        tools:layout_editor_absoluteX="20dp"
+        android:foreground="?android:attr/selectableItemBackground"/>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_location"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/fragment_container_location"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
