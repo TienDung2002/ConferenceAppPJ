@@ -5,10 +5,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.view.Gravity
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.eventsconferencespj.Activities.Conf_Detail.ConfeDetail
 import com.example.eventsconferencespj.Activities.Location.Location
 import com.example.eventsconferencespj.Activities.Users.User_Detail
 import com.example.eventsconferencespj.R
@@ -72,7 +75,22 @@ class Home_Screen : AppCompatActivity(){
         viewModel.addConferenceData(ConfeData(6, "Lâu đài 3", "Hà nội 3", 1003, 10000003, 1523, 5, R.drawable.event_room_demo))
         // Gán danh sách dữ liệu từ ViewModel cho adapter
         val confDataList = viewModel.getConferenceDataList()
+        var adapter = HomeAdapter(confDataList)
         binding.HorizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.HorizontalRecyclerView.adapter = HomeAdapter(confDataList)
+        binding.HorizontalRecyclerView.adapter = adapter
+
+        // Click vào từng item trong recycler
+        adapter.setOnItemClickListener(object : HomeAdapter.onItemClickListener{
+            override fun onItemClicked(position: Int) {
+//                Toast.makeText(this@Home_Screen, "Bạn đang click vào $position", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@Home_Screen, ConfeDetail::class.java)
+                intent.putExtra("name", confDataList[position].confName)
+                intent.putExtra("address", confDataList[position].confAdd)
+                intent.putExtra("price", confDataList[position].price)
+                intent.putExtra("seat", confDataList[position].seat)
+                intent.putExtra("image", confDataList[position].image)
+                startActivity(intent)
+            }
+        })
     }
 }

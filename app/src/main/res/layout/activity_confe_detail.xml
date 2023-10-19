@@ -27,6 +27,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="?attr/selectableItemBackground"
+        android:drawableStart="@drawable/arrow_back"
+        android:textColor="@color/main_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -97,6 +110,29 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerHorizontal="true"
                     android:layout_alignBaseline="@id/moneyType"/>
+
+                <TextView
+                    android:id="@+id/numberOfSeat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200"
+                    android:textColor="@color/main_white"
+                    android:textSize="17sp"
+                    android:layout_below="@id/moneyType"
+                    android:layout_toStartOf="@+id/numberOfSeat_des"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignBaseline="@id/conf_address_detail"/>
+                <TextView
+                    android:id="@+id/numberOfSeat_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" chỗ"
+                    android:textColor="@color/main_white"
+                    android:textSize="17sp"
+                    android:layout_below="@id/daysRent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignBaseline="@id/conf_address_detail"/>
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"

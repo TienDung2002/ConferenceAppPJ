@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.example.eventsconferencespj.Activities.Home.Home_Screen
@@ -41,14 +42,37 @@ class User_Detail : AppCompatActivity() {
                 checkStateEdit(true)
                 Toast.makeText(this, "Chọn trường muốn sửa", Toast.LENGTH_SHORT).show()
             } else {
-                // xử lý lưu thông tin vào db ở đây
-                binding.changeDataUser.text = "Cập nhật thông tin"
-                // Ngăn chỉnh sửa EditText và ẩn ShowPassBtn
-                checkStateEdit(false)
-                // check từng trường edittext có hợp lệ không ở đây
-                //
-                //
-                Toast.makeText(this, "Lưu thành công!", Toast.LENGTH_SHORT).show()
+                val name = binding.nameDetail.text.toString()
+                val phone = binding.phoneDetail.text.toString()
+                val email = binding.emailDetail.text.toString()
+                val pass = binding.passDetail.text.toString()
+                var valid = true
+
+                if (name.isEmpty()) {
+                    Toast.makeText(this, "Không để trống tên", Toast.LENGTH_SHORT).show()
+                    valid = false
+                }
+                if (phone.isEmpty()) {
+                    Toast.makeText(this, "Không để trống SĐT", Toast.LENGTH_SHORT).show()
+                    valid = false
+                }
+                if (email.isEmpty() || !isEmailValid(email)) {
+                    Toast.makeText(this, "Email trống hoặc không hợp lệ!", Toast.LENGTH_SHORT).show()
+                    valid = false
+                }
+                if (pass.isEmpty()) {
+                    Toast.makeText(this, "Không để trống mật khẩu", Toast.LENGTH_SHORT).show()
+                    valid = false
+                }
+                if (valid) {
+                    binding.changeDataUser.text = "Cập nhật thông tin"
+                    // xử lý lưu thông tin vào db ở đây
+                    //
+                    //
+                    // Ngăn chỉnh sửa EditText và ẩn ShowPassBtn
+                    checkStateEdit(false)
+                    Toast.makeText(this, "Lưu thành công!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -56,6 +80,7 @@ class User_Detail : AppCompatActivity() {
         binding.logoutBtn.setOnClickListener {
             val intentUserDetail = Intent(this, Login::class.java)
             startActivity(intentUserDetail)
+            Toast.makeText(this, "Bạn đã đăng xuất", Toast.LENGTH_SHORT).show()
             finish()
             // dùng viewmodel để cập nhật lại thông tin cho tất cả các activity nếu đăng xuất ra và log lại tài khoản khác
         }
@@ -90,6 +115,12 @@ class User_Detail : AppCompatActivity() {
         binding.emailDetail.isEnabled = state
         binding.passDetail.isEnabled = state
         binding.ShowPassBtn.visibility = if (state) View.VISIBLE else View.GONE
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+        // Sử dụng mẫu sẵn có cho email
+        val pattern = Patterns.EMAIL_ADDRESS
+        return pattern.matcher(email).matches()
     }
 
 }

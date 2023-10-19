@@ -56,34 +56,56 @@
                     android:id="@+id/name_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:paddingBottom="5dp"
                     android:text="Họ tên: "
-                    android:layout_alignParentStart="true"
                     android:textColor="@color/main_white"
                     android:textSize="17sp" />
 
-                <EditText
-                    android:id="@+id/name_detail"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/wrap_name_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_marginStart="85dp"
-                    android:text="Vũ Tiến Dũng"
-                    android:inputType="text"
-                    android:lines="1"
-                    android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@+id/name_title"
-                    android:background="@drawable/transparent_background"
-                    android:textColor="@color/main_white"
-                    android:textSize="17sp" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="85dp"
+                    app:boxStrokeColor="@color/main_white"
+                    app:boxStrokeErrorColor="@color/main_yellow">
+
+                    <EditText
+                        android:id="@+id/name_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/transparent_background"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:padding="10dp"
+                        android:text="Vũ Tiến Dũng"
+                        android:textColor="@color/main_white"
+                        android:textSize="17sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <!--                <EditText-->
+                <!--                    android:id="@+id/name_detail"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    android:layout_marginStart="85dp"-->
+                <!--                    android:text="Vũ Tiến Dũng"-->
+                <!--                    android:inputType="text"-->
+                <!--                    android:lines="1"-->
+                <!--                    android:layout_alignParentEnd="true"-->
+                <!--                    android:layout_alignBaseline="@+id/name_title"-->
+                <!--                    android:background="@drawable/transparent_background"-->
+                <!--                    android:textColor="@color/main_white"-->
+                <!--                    android:textSize="17sp" />-->
 
                 <!-- gạch dưới -->
                 <View
                     android:id="@+id/line"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@id/name_title"
-                    android:layout_marginBottom="25dp"
+                    android:layout_below="@id/wrap_name_detail"
+                    android:layout_marginBottom="20dp"
                     android:background="@color/main_white"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp" />
@@ -98,30 +120,52 @@
                     android:textColor="@color/main_white"
                     android:textSize="17sp" />
 
-                <EditText
-                    android:id="@+id/phone_detail"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/wrap_phone_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_marginStart="85dp"
-                    android:text="0123456789"
-                    android:inputType="phone"
-                    android:lines="1"
-                    android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@+id/phone_title"
-                    android:background="@drawable/transparent_background"
-                    android:textColor="@color/main_white"
-                    android:textSize="17sp"
-                    tools:ignore="TextFields" />
-<!--                android:inputType="phone"-->
+                    android:layout_alignParentEnd="true"
+                    app:boxStrokeColor="@color/main_white"
+                    app:boxStrokeErrorColor="@color/main_yellow">
+
+                    <EditText
+                        android:id="@+id/phone_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="85dp"
+                        android:background="@drawable/transparent_background"
+                        android:inputType="phone"
+                        android:lines="1"
+                        android:padding="10dp"
+                        android:text="0123456789"
+                        android:textColor="@color/main_white"
+                        android:textSize="17sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <!--                <EditText-->
+                <!--                    android:id="@+id/phone_detail"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    android:layout_marginStart="85dp"-->
+                <!--                    android:text="0123456789"-->
+                <!--                    android:inputType="phone"-->
+                <!--                    android:lines="1"-->
+                <!--                    android:layout_alignParentEnd="true"-->
+                <!--                    android:layout_alignBaseline="@+id/phone_title"-->
+                <!--                    android:background="@drawable/transparent_background"-->
+                <!--                    android:textColor="@color/main_white"-->
+                <!--                    android:textSize="17sp"-->
+                <!--                    tools:ignore="TextFields" />-->
 
                 <!-- gạch dưới -->
                 <View
                     android:id="@+id/line2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@id/phone_detail"
-                    android:layout_marginBottom="25dp"
+                    android:layout_below="@id/wrap_phone_detail"
+                    android:layout_marginBottom="20dp"
                     android:background="@color/main_white"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp" />
@@ -136,29 +180,54 @@
                     android:textColor="@color/main_white"
                     android:textSize="17sp" />
 
-                <EditText
-                    android:id="@+id/email_detail"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/wrap_email_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_marginStart="85dp"
-                    android:text="mothaibabon@gmail.com"
-                    android:inputType="text"
-                    android:lines="1"
-                    android:layout_alignParentEnd="true"
                     android:layout_alignBaseline="@+id/email_title"
-                    android:background="@drawable/transparent_background"
-                    android:textColor="@color/main_white"
-                    android:textSize="17sp"
-                    tools:ignore="TextFields" />
+                    android:layout_alignParentEnd="true"
+                    app:boxStrokeColor="@color/main_white"
+                    app:boxStrokeErrorColor="@color/main_yellow">
+
+                    <EditText
+                        android:id="@+id/email_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/email_title"
+                        android:layout_marginStart="85dp"
+                        android:background="@drawable/transparent_background"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:padding="10dp"
+                        android:text="mothaibabon@gmail.com"
+                        android:textColor="@color/main_white"
+                        android:textSize="17sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--                <EditText-->
+                <!--                    android:id="@+id/email_detail"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    android:layout_marginStart="85dp"-->
+                <!--                    android:text="mothaibabon@gmail.com"-->
+                <!--                    android:inputType="text"-->
+                <!--                    android:lines="1"-->
+                <!--                    android:layout_alignParentEnd="true"-->
+                <!--                    android:layout_alignBaseline="@+id/email_title"-->
+                <!--                    android:background="@drawable/transparent_background"-->
+                <!--                    android:textColor="@color/main_white"-->
+                <!--                    android:textSize="17sp"-->
+                <!--                    tools:ignore="TextFields" />-->
 
                 <!-- gạch dưới -->
                 <View
                     android:id="@+id/line3"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@id/email_detail"
-                    android:layout_marginBottom="25dp"
+                    android:layout_below="@id/wrap_email_detail"
+                    android:layout_marginBottom="20dp"
                     android:background="@color/main_white"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp" />
@@ -166,8 +235,8 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_below="@+id/line3">
+                    android:layout_below="@+id/line3"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/pass_title"
@@ -178,38 +247,61 @@
                         android:textColor="@color/main_white"
                         android:textSize="17sp" />
 
-                    <EditText
-                        android:id="@+id/pass_detail"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/wrap_pass_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:layout_marginStart="85dp"
-                        android:text="123456"
-                        android:inputType="textPassword"
-                        android:lines="1"
-                        android:layout_alignParentEnd="true"
                         android:layout_alignBaseline="@+id/pass_title"
-                        android:background="@drawable/transparent_background"
-                        android:textColor="@color/main_white"
-                        android:textSize="17sp" />
+                        android:layout_alignParentEnd="true"
+                        app:boxStrokeColor="@color/main_white"
+                        app:boxStrokeErrorColor="@color/main_yellow">
+                        <EditText
+                            android:id="@+id/pass_detail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/pass_title"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="85dp"
+                            android:background="@drawable/transparent_background"
+                            android:inputType="textPassword"
+                            android:lines="1"
+                            android:padding="10dp"
+                            android:text="123456"
+                            android:textColor="@color/main_white"
+                            android:textSize="17sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+<!--                    <EditText-->
+<!--                        android:id="@+id/pass_detail"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignBaseline="@+id/pass_title"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:layout_marginStart="85dp"-->
+<!--                        android:background="@drawable/transparent_background"-->
+<!--                        android:inputType="textPassword"-->
+<!--                        android:lines="1"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:text="123456"-->
+<!--                        android:textColor="@color/main_white"-->
+<!--                        android:textSize="17sp" />-->
 
                     <ImageButton
                         android:id="@+id/ShowPassBtn"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
                         android:layout_gravity="center_vertical"
                         android:background="@drawable/eye_open"
                         android:padding="10dp"
-                        android:layout_alignParentEnd="true"
-                        app:tint="@color/main_white"
-                        android:visibility="gone"/>
+                        android:visibility="invisible"
+                        app:tint="@color/main_white" />
 
                     <!-- gạch dưới -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@id/pass_detail"
-                        android:layout_marginBottom="25dp"
+                        android:layout_below="@id/wrap_pass_detail"
+                        android:layout_marginBottom="20dp"
                         android:background="@color/main_white"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp" />
@@ -250,12 +342,12 @@
         android:id="@+id/backButton"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
         android:layout_gravity="top|start"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:background="?attr/selectableItemBackground"
         android:drawableStart="@drawable/arrow_back"
         android:textColor="@color/main_white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

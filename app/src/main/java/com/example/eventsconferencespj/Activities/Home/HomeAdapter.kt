@@ -17,8 +17,17 @@ import com.example.eventsconferencespj.R
 
 
 class HomeAdapter(private val list: List<ConfeData>) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+    lateinit var mListener: onItemClickListener
 
-    inner class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    interface onItemClickListener{
+        fun onItemClicked(position: Int){
+        }
+    }
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
+    }
+
+    inner class HomeViewHolder(view: View, listener: onItemClickListener) : RecyclerView.ViewHolder(view) {
         val tvConfName: TextView
         val ratingConf: RatingBar
         val price: TextView
@@ -29,15 +38,20 @@ class HomeAdapter(private val list: List<ConfeData>) : RecyclerView.Adapter<Home
             ratingConf = view.findViewById(R.id.ratingID)
             price = view.findViewById(R.id.pricePerDay)
             img = view.findViewById(R.id.conf_img)
+
+
+            view.setOnClickListener {
+                listener.onItemClicked(layoutPosition)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapter.HomeViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.conference_item, parent, false)
-        return HomeViewHolder(view)
+        return HomeViewHolder(view, mListener)
     }
 
-    override fun onBindViewHolder(holder: HomeAdapter.HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.tvConfName.text = list[position].confName
         holder.ratingConf.rating = list[position].ratingStar.toFloat()
         holder.price.text = list[position].price.toString()
@@ -45,4 +59,6 @@ class HomeAdapter(private val list: List<ConfeData>) : RecyclerView.Adapter<Home
     }
 
     override fun getItemCount():Int = list.size
+
+
 }

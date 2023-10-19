@@ -24,7 +24,7 @@
         android:id="@+id/backButton"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="top|start"
         android:background="?attr/selectableItemBackground"
