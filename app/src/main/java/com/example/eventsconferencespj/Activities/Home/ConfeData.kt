@@ -7,6 +7,6 @@ data class ConfeData(
     val seat: Int,
     val price: Int,
     val requiredFirstPay: Int,
-    val ratingStar: Int,
+    val ratingStar: Double,
     val image: Int
 )

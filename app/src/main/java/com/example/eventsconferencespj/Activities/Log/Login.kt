@@ -3,6 +3,7 @@ package com.example.eventsconferencespj.Activities.Log
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.text.InputType
 import android.util.Patterns
 import android.widget.Button
@@ -10,11 +11,14 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import com.example.eventsconferencespj.Activities.Home.Home_Screen
+import com.example.eventsconferencespj.Activities.Location.Location
+import com.example.eventsconferencespj.PreventDoubleClick
 import com.example.eventsconferencespj.R
 import com.google.android.material.textfield.TextInputLayout
 
 class Login : AppCompatActivity() {
     private var isShowPassword = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +36,11 @@ class Login : AppCompatActivity() {
         val passwordTextInputLayout = findViewById<TextInputLayout>(R.id.passwordTextInputLayout)
 
         goToRegisterBtn.setOnClickListener {
-            // Thực hiện chuyển đến màn hình đăng ký
-            val intent = Intent(this, Register::class.java)
-            startActivity(intent)
+            if (PreventDoubleClick.checkClick()) {
+                // Thực hiện chuyển đến màn hình đăng ký
+                val intent = Intent(this, Register::class.java)
+                startActivity(intent)
+            }
         }
 
         // Truy cập vào home screen, check trường trống
@@ -56,13 +62,20 @@ class Login : AppCompatActivity() {
 //
 //            if ((email.isNotEmpty() && isEmailValid(email)) && password.isNotEmpty()) {
 //                // Chuyển đến màn hình chính
-//                val intent = Intent(this, Home_Screen::class.java)
-//                startActivity(intent)
-//                finish()
+//                if (PreventDoubleClick.checkClick()) {
+//                    // Thực hiện chuyển đến màn hình đăng ký
+//                    val intent = Intent(this, Home_Screen::class.java)
+//                    startActivity(intent)
+//                    finish()
+//                }
 //            }
-            val intent = Intent(this, Home_Screen::class.java)
-            startActivity(intent)
-            finish()
+
+            // test
+                if (PreventDoubleClick.checkClick()) {
+                    val intent = Intent(this, Home_Screen::class.java)
+                    startActivity(intent)
+                    finish()
+                }
         }
 
         // show/hide pass

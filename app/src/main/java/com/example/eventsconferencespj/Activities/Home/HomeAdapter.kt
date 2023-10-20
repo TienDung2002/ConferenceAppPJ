@@ -6,6 +6,7 @@ import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RectShape
+import android.icu.text.NumberFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventsconferencespj.R
+import java.util.Locale
 
 
 class HomeAdapter(private val list: List<ConfeData>) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
@@ -52,13 +54,15 @@ class HomeAdapter(private val list: List<ConfeData>) : RecyclerView.Adapter<Home
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+        // Định dạng giá trị price với dấu phẩy
+        val priceFormatter = NumberFormat.getNumberInstance(Locale("vi", "VN"))
+        val formattedPrice = priceFormatter.format(list[position].price)
+
         holder.tvConfName.text = list[position].confName
         holder.ratingConf.rating = list[position].ratingStar.toFloat()
-        holder.price.text = list[position].price.toString()
-        holder.img.setImageResource(R.drawable.event_room_demo)
+        holder.price.text = formattedPrice.toString()
+        holder.img.setImageResource(list[position].image)
     }
 
     override fun getItemCount():Int = list.size
-
-
 }

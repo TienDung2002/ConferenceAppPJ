@@ -41,7 +41,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/event_room_demo" />
+                android:src="@drawable/user_ava" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
@@ -51,8 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHeight_default="wrap"
         app:layout_constraintTop_toBottomOf="@+id/menu_ava_wrap">
 
         <LinearLayout
@@ -113,6 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         app:layout_constraintTop_toBottomOf="@+id/greeting_wrap"
+        app:layout_constraintHeight_default="wrap"
         tools:layout_editor_absoluteX="20dp">
 
         <LinearLayout
@@ -208,11 +209,12 @@
         android:id="@+id/title_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="35dp"
         android:text="Phổ biến"
         android:textColor="@color/main_white"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHeight_default="wrap"
         app:layout_constraintTop_toBottomOf="@+id/search_bar_wrap" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -224,6 +226,7 @@
         app:layout_constraintBottom_toTopOf="@+id/navigation_iconWrap"
         app:layout_constraintTop_toBottomOf="@+id/title_list"
         tools:layout_editor_absoluteX="20dp"
+        app:layout_constraintHeight_default="wrap"
         android:foreground="?android:attr/selectableItemBackground"/>
 
 <!--    <androidx.fragment.app.FragmentContainerView-->

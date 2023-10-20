@@ -3,6 +3,7 @@ package com.example.eventsconferencespj.Activities.Log
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.text.InputType
 import android.util.Patterns
 import android.widget.Button
@@ -10,6 +11,8 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import com.example.eventsconferencespj.Activities.Payments.Payments
+import com.example.eventsconferencespj.PreventDoubleClick
 import com.example.eventsconferencespj.R
 import com.example.eventsconferencespj.databinding.ActivityRegisterBinding
 import com.example.eventsconferencespj.databinding.ActivityUserDetailBinding
@@ -36,10 +39,12 @@ class Register : AppCompatActivity() {
         val passwordTextInputLayout_2 = binding.passwordTextInputLayout1
 
         binding.goToLogin.setOnClickListener {
-            // Thực hiện chuyển đến màn hình đăng nhập (Login)
-            val intent = Intent(this, Login::class.java)
-            startActivity(intent)
-            finish()
+            if (PreventDoubleClick.checkClick()) {
+                // Thực hiện chuyển đến màn hình đăng nhập (Login)
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
         binding.finishedRegisterBtn.setOnClickListener {
@@ -51,11 +56,15 @@ class Register : AppCompatActivity() {
             if (password_1.isEmpty()) passwordTextInputLayout_1.error = "Nhập mật khẩu" else passwordTextInputLayout_1.error = null
             if (password_2.isEmpty()) passwordTextInputLayout_2.error = "Nhập lại mật khẩu" else passwordTextInputLayout_2.error = null
 
+            // Còn check 2 mật khẩu trùng nhau nữa
+
             if ((email.isNotEmpty() && isEmailValid(email)) && password_1.isNotEmpty() && password_2.isNotEmpty()) {
                 Toast.makeText(this, "Đăng ký thành công, trở lại đăng nhập!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, Login::class.java)
-                startActivity(intent)
-                finish()
+                if (PreventDoubleClick.checkClick()) {
+                    val intent = Intent(this, Login::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
 

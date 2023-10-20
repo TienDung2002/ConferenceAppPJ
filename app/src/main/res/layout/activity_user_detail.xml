@@ -345,7 +345,7 @@
         android:layout_gravity="top|start"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:background="?attr/selectableItemBackground"
+        android:background="@drawable/transparent_background"
         android:drawableStart="@drawable/arrow_back"
         android:textColor="@color/main_white"
         app:layout_constraintStart_toStartOf="parent"
