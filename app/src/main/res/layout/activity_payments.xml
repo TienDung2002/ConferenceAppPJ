@@ -70,11 +70,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/confName_payment"
-                android:layout_marginEnd="8dp"
                 android:layout_toEndOf="@+id/cardView"
                 android:text="80.000.000"
                 android:textColor="@color/main_light_yellow"
-                android:textSize="21sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/moneyType"
@@ -83,7 +82,7 @@
                 android:layout_below="@+id/confName_payment"
                 android:layout_alignBaseline="@+id/pricePerDay"
                 android:layout_toEndOf="@+id/pricePerDay"
-                android:text="VNĐ"
+                android:text=" VNĐ"
                 android:textColor="@color/main_white"
                 android:textSize="17sp" />
 

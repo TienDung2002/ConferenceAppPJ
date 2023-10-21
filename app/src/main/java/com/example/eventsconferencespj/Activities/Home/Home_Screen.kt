@@ -87,12 +87,13 @@ class Home_Screen : AppCompatActivity(){
         // Click vào từng item trong recycler
         adapter.setOnItemClickListener(object : HomeAdapter.onItemClickListener{
             override fun onItemClicked(position: Int) {
-//                Toast.makeText(this@Home_Screen, "Bạn đang click vào $position", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@Home_Screen, ConfeDetail::class.java)
                 intent.putExtra("name", confDataList[position].confName)
                 intent.putExtra("address", confDataList[position].confAdd)
                 intent.putExtra("price", confDataList[position].price)
+                intent.putExtra("required", confDataList[position].requiredFirstPay)
                 intent.putExtra("seat", confDataList[position].seat)
+                intent.putExtra("rating", confDataList[position].ratingStar)
                 intent.putExtra("image", confDataList[position].image)
                 startActivity(intent)
             }

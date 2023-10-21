@@ -5,6 +5,7 @@ import android.icu.text.NumberFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import com.example.eventsconferencespj.Activities.Home.Home_Screen
 import com.example.eventsconferencespj.Activities.Payments.Payments
 import com.example.eventsconferencespj.Activities.Users.User_Detail
@@ -21,6 +22,16 @@ class ConfeDetail : AppCompatActivity() {
         binding = ActivityConfeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // nhận dũ liệu từ home-screen
+        val bundle : Bundle? = intent.extras
+        val nameConf = bundle?.getString("name")
+        val addressConf = bundle?.getString("address")
+        val priceConf = bundle?.getInt("price")
+        val required = bundle?.getInt("required")
+        val numberOfSeatConf = bundle?.getInt("seat")
+        val rating = bundle?.getDouble("rating")
+        val imageConf = bundle?.getInt("image")
+
         binding.backButton.setOnClickListener{
             val intent = Intent(this@ConfeDetail, Home_Screen::class.java)
             startActivity(intent)
@@ -30,33 +41,31 @@ class ConfeDetail : AppCompatActivity() {
         binding.goToPaymentBtn.setOnClickListener{
             if (PreventDoubleClick.checkClick()) {
                 val intent = Intent(this@ConfeDetail, Payments::class.java)
+                intent.putExtra("name", nameConf)
+                intent.putExtra("price", priceConf)
+                intent.putExtra("required", required)
+                intent.putExtra("image", imageConf)
                 startActivity(intent)
             }
         }
 
-        // chưa được
         var checkHeart = false
         binding.addToWishList.setOnClickListener{
+            if (checkHeart) binding.addToWishList.setImageResource(R.drawable.toolbar_heart_icon)
+            else binding.addToWishList.setImageResource(R.drawable.toolbar_heart_icon_3)
             checkHeart = !checkHeart
-            if (checkHeart) {
-                binding.addToWishList.setImageResource(R.drawable.toolbar_heart_icon_3)
-            }
-            binding.addToWishList.setImageResource(R.drawable.toolbar_heart_icon)
         }
-
-        // nhận dũ liệu từ home-screen
-        val bundle : Bundle? = intent.extras
-        val nameConf = bundle?.getString("name")
-        val addressConf = bundle?.getString("address")
-        val priceConf = bundle?.getInt("price")
-        val numberOfSeatConf = bundle?.getInt("seat")
-        val imageConf = bundle?.getInt("image")
 
         // format tiền Việt
         val priceFormatter = NumberFormat.getNumberInstance(Locale("vi", "VN"))
 
         binding.confNameDetail.text = nameConf
         binding.confAddressDetail.text = addressConf
+
+        // rating
+        binding.ratingID.rating = rating!!.toFloat()
+        binding.overallPoint.text = rating.toString()
+
         binding.pricePerDay.text = priceFormatter.format(priceConf).toString()
         binding.numberOfSeat.text = numberOfSeatConf.toString()
         if (imageConf != null) binding.imageView.setImageResource(imageConf)
