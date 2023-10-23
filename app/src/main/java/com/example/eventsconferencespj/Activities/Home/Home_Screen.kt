@@ -35,7 +35,7 @@ class Home_Screen : AppCompatActivity(){
         val userEmail = bundle?.getString("email")
         val userPass = bundle?.getString("password")
 //        => gửi cho User_Detail
-        val intentUser : Intent = Intent(this, User_Detail::class.java)
+        val intentUser  = Intent(this, User_Detail::class.java)
         intentUser.putExtra("email", userEmail)
         intentUser.putExtra("password", userPass)
         startActivity(intentUser)
