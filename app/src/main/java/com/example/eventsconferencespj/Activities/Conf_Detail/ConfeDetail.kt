@@ -22,6 +22,11 @@ class ConfeDetail : AppCompatActivity() {
         binding = ActivityConfeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.backButton.setOnClickListener{
+            val intent = Intent(this@ConfeDetail, Home_Screen::class.java)
+            startActivity(intent)
+        }
+
         // nhận dũ liệu từ home-screen
         val bundle : Bundle? = intent.extras
         val nameConf = bundle?.getString("name")
@@ -31,12 +36,6 @@ class ConfeDetail : AppCompatActivity() {
         val numberOfSeatConf = bundle?.getInt("seat")
         val rating = bundle?.getDouble("rating")
         val imageConf = bundle?.getInt("image")
-
-        binding.backButton.setOnClickListener{
-            val intent = Intent(this@ConfeDetail, Home_Screen::class.java)
-            startActivity(intent)
-            finish()
-        }
 
         binding.goToPaymentBtn.setOnClickListener{
             if (PreventDoubleClick.checkClick()) {
@@ -69,10 +68,8 @@ class ConfeDetail : AppCompatActivity() {
         if (rating != null) binding.ratingID.rating = rating.toFloat()
         binding.overallPoint.text = rating.toString()
 
-
         binding.pricePerDay.text = priceFormatter.format(priceConf).toString()
         binding.numberOfSeat.text = numberOfSeatConf.toString()
         if (imageConf != null) binding.imageView.setImageResource(imageConf)
-
     }
 }

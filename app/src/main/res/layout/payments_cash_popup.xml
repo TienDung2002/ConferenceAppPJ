@@ -49,15 +49,6 @@
                 android:layout_below="@+id/successTitle"
                 android:layout_centerHorizontal="true"/>
 
-<!--            <TextView-->
-<!--                android:layout_width="330dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Hoặc gọi hotline +84123456789 để được hỗ trợ nhanh nhất!"-->
-<!--                android:textColor="@color/main_white"-->
-<!--                android:textSize="17sp"-->
-<!--                android:layout_below="@+id/mess"-->
-<!--                android:layout_centerHorizontal="true"/>-->
-
             <Button
                 android:id="@+id/finishBtnCash"
                 android:layout_width="240dp"
