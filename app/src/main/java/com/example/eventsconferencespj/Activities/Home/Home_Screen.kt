@@ -34,11 +34,6 @@ class Home_Screen : AppCompatActivity(){
         val bundle : Bundle? = intent.extras
         val userEmail = bundle?.getString("email")
         val userPass = bundle?.getString("password")
-//        => gửi cho User_Detail
-        val intentUser  = Intent(this, User_Detail::class.java)
-        intentUser.putExtra("email", userEmail)
-        intentUser.putExtra("password", userPass)
-        startActivity(intentUser)
 
         // Đổi màu hint của search bar
         val searchItem: SearchView = binding.searchView
@@ -70,6 +65,8 @@ class Home_Screen : AppCompatActivity(){
         binding.navProfile.setOnClickListener{
             if (PreventDoubleClick.checkClick()) {
                 val intent = Intent(this, User_Detail::class.java)
+                intent.putExtra("email", userEmail)
+                intent.putExtra("password", userPass)
                 startActivity(intent)
             }
         }

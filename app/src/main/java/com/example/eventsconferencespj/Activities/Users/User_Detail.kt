@@ -3,6 +3,7 @@ package com.example.eventsconferencespj.Activities.Users
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
 import android.util.Patterns
 import android.view.View
@@ -26,6 +27,10 @@ class User_Detail : AppCompatActivity() {
         val userEmail = bundle?.getString("email")
         val userPass = bundle?.getString("password")
         // gán thông tin vào trường
+        val editableUserEmail = Editable.Factory.getInstance().newEditable(userEmail)
+        val editableUserPass = Editable.Factory.getInstance().newEditable(userPass)
+        binding.emailDetail.text = editableUserEmail
+        binding.passDetail.text = editableUserPass
 
 
         binding.backButton.setOnClickListener {

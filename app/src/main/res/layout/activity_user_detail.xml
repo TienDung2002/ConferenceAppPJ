@@ -80,7 +80,7 @@
                         android:inputType="text"
                         android:lines="1"
                         android:padding="10dp"
-                        android:text="Vũ Tiến Dũng"
+                        android:text="name user"
                         android:textColor="@color/main_white"
                         android:textSize="17sp" />
                 </com.google.android.material.textfield.TextInputLayout>
