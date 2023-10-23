@@ -13,7 +13,6 @@ import com.example.eventsconferencespj.R
 
 
 class Payments_Success_Fragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

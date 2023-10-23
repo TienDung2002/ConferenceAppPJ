@@ -17,7 +17,6 @@ class Payments_Cash_Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val cashPopup = inflater.inflate(R.layout.payments_cash_popup, container, false)
         val buttonFinish = cashPopup.findViewById<Button>(R.id.finishBtnCash)
 
