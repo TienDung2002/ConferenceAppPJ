@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Base.Theme.EventsConferencesPJ" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
@@ -22,4 +23,12 @@
         <item name="android:textColorSecondary">#FFFFFF</item>
     </style>
 
+    <!--màu hint của payments-->
+<!--    <style name="HintColorDefault" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">-->
+<!--        <item name="android:textColorHint">@color/main_white</item> &lt;!&ndash; Màu hint mặc định &ndash;&gt;-->
+<!--    </style>-->
+<!--    <style name="UncheckHintColor" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">-->
+<!--        <item name="android:textColorHint">@color/uncheckHintColor-->
+<!--        </item> &lt;!&ndash; Màu hint khi vô hiệu hóa &ndash;&gt;-->
+<!--    </style>-->
 </resources>

@@ -42,8 +42,11 @@ class ConfeDetail : AppCompatActivity() {
             if (PreventDoubleClick.checkClick()) {
                 val intent = Intent(this@ConfeDetail, Payments::class.java)
                 intent.putExtra("name", nameConf)
+                intent.putExtra("address", addressConf)
                 intent.putExtra("price", priceConf)
                 intent.putExtra("required", required)
+                intent.putExtra("seat", numberOfSeatConf)
+                intent.putExtra("rating", rating)
                 intent.putExtra("image", imageConf)
                 startActivity(intent)
             }
@@ -63,8 +66,9 @@ class ConfeDetail : AppCompatActivity() {
         binding.confAddressDetail.text = addressConf
 
         // rating
-        binding.ratingID.rating = rating!!.toFloat()
+        if (rating != null) binding.ratingID.rating = rating.toFloat()
         binding.overallPoint.text = rating.toString()
+
 
         binding.pricePerDay.text = priceFormatter.format(priceConf).toString()
         binding.numberOfSeat.text = numberOfSeatConf.toString()

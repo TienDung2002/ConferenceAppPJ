@@ -9,6 +9,7 @@
     <color name="main_red">#ED0404</color>
 
     <color name="checkedPayment">#43FFDC9E</color>
+    <color name="uncheckHintColor">#433E3E3E</color>
 
     <string name="sign_up">Sign up</string>
 </resources>

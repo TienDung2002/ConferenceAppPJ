@@ -24,20 +24,42 @@
                 android:id="@+id/icon"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="60dp"
                 android:background="@drawable/ic_payment_success"
                 android:layout_centerHorizontal="true"/>
             <TextView
+                android:id="@+id/successTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thanh toán thành công!"
+                android:text="Đặt hẹn thành công!"
                 android:textColor="@color/main_white"
                 android:textSize="22sp"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/icon"
                 android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/mess"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:text="Chúng tôi sẽ liên hệ lại để xác nhận hoặc hãy chủ động gọi hotline +84123456789 để được hỗ trợ nhanh nhất!"
+                android:textColor="@color/main_white"
+                android:textSize="17sp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/successTitle"
+                android:layout_centerHorizontal="true"/>
+
+<!--            <TextView-->
+<!--                android:layout_width="330dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Hoặc gọi hotline +84123456789 để được hỗ trợ nhanh nhất!"-->
+<!--                android:textColor="@color/main_white"-->
+<!--                android:textSize="17sp"-->
+<!--                android:layout_below="@+id/mess"-->
+<!--                android:layout_centerHorizontal="true"/>-->
+
             <Button
-                android:id="@+id/finishBtn"
+                android:id="@+id/finishBtnCash"
                 android:layout_width="240dp"
                 android:layout_height="60dp"
                 android:background="@drawable/start_button"
