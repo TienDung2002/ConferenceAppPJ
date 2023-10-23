@@ -21,7 +21,6 @@ import com.example.eventsconferencespj.databinding.ActivityHomeScreenBinding
 class Home_Screen : AppCompatActivity(){
     private lateinit var binding: ActivityHomeScreenBinding
     private lateinit var viewModel: HomeScreenViewModel
-    private val List = mutableListOf<ConfeData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,23 +30,30 @@ class Home_Screen : AppCompatActivity(){
         // khởi tạo ViewModel
         viewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
 
+        // lấy email, pass từ login
+        val bundle : Bundle? = intent.extras
+        val userEmail = bundle?.getString("email")
+        val userPass = bundle?.getString("password")
+//        => gửi cho User_Detail
+        val intentUser : Intent = Intent(this, User_Detail::class.java)
+        intentUser.putExtra("email", userEmail)
+        intentUser.putExtra("password", userPass)
+        startActivity(intentUser)
+
         // Đổi màu hint của search bar
         val searchItem: SearchView = binding.searchView
         searchItem.setQueryHint(Html.fromHtml("<font color = #ffffff>" + "Tìm kiếm" + "</font>"))
         searchItem.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 // Xử lý tìm kiếm ở đây
-
                 // Ẩn bàn phím
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(searchItem.windowToken, 0)
-
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 // Xử lý sự thay đổi văn bản trong ô tìm kiếm (nếu cần)
-
                 return true
             }
         })

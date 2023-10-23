@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
 import android.text.InputType
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
@@ -12,13 +13,14 @@ import android.widget.ImageButton
 import android.widget.TextView
 import com.example.eventsconferencespj.Activities.Home.Home_Screen
 import com.example.eventsconferencespj.Activities.Location.Location
+import com.example.eventsconferencespj.MySQL.DatabaseHelper.DbHelper
 import com.example.eventsconferencespj.PreventDoubleClick
 import com.example.eventsconferencespj.R
 import com.google.android.material.textfield.TextInputLayout
 
 class Login : AppCompatActivity() {
     private var isShowPassword = false
-
+    private lateinit var databaseHelper: DbHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +33,10 @@ class Login : AppCompatActivity() {
         val passwordEditText = findViewById<EditText>(R.id.logPass)
         // Icon show/hide pass
         val passwordToggleBtn = findViewById<ImageButton>(R.id.ShowPassBtn)
-
         val emailTextInputLayout = findViewById<TextInputLayout>(R.id.emailTextInputLayout)
         val passwordTextInputLayout = findViewById<TextInputLayout>(R.id.passwordTextInputLayout)
+
+        databaseHelper = DbHelper(this)
 
         goToRegisterBtn.setOnClickListener {
             if (PreventDoubleClick.checkClick()) {
@@ -45,37 +48,42 @@ class Login : AppCompatActivity() {
 
         // Truy cập vào home screen, check trường trống
         goToHomeScreen.setOnClickListener {
-//            val email = emailEditText.text.toString()
-//            val password = passwordEditText.text.toString()
-//
-//            if (email.isEmpty() || !isEmailValid(email)) {
-//                emailTextInputLayout.error = "Email trống hoặc không hợp lệ!"
-//            } else {
-//                emailTextInputLayout.error = null
-//            }
-//
-//            if (password.isEmpty()) {
-//                passwordTextInputLayout.error = "Nhập mật khẩu"
-//            } else {
-//                passwordTextInputLayout.error = null
-//            }
-//
-//            if ((email.isNotEmpty() && isEmailValid(email)) && password.isNotEmpty()) {
-//                // Chuyển đến màn hình chính
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            if (email.isEmpty() || !isEmailValid(email)) {
+                emailTextInputLayout.error = "Email trống hoặc không hợp lệ!"
+            } else {
+                emailTextInputLayout.error = null
+            }
+
+            if (password.isEmpty()) {
+                passwordTextInputLayout.error = "Nhập mật khẩu"
+            } else {
+                passwordTextInputLayout.error = null
+            }
+
+            if ((email.isNotEmpty() && isEmailValid(email)) && password.isNotEmpty()) {
+                val checklogin = databaseHelper.CheckLogin(email, password)
+                // Chuyển đến màn hình chính
+                if (checklogin) {
+                    // Thực hiện chuyển đến màn hình đăng ký
+                    if (PreventDoubleClick.checkClick()) {
+                        val intent = Intent(this, Home_Screen::class.java)
+                        intent.putExtra("email", email)
+                        intent.putExtra("password", password)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            }
+
+            // test
 //                if (PreventDoubleClick.checkClick()) {
-//                    // Thực hiện chuyển đến màn hình đăng ký
 //                    val intent = Intent(this, Home_Screen::class.java)
 //                    startActivity(intent)
 //                    finish()
 //                }
-//            }
-
-            // test
-                if (PreventDoubleClick.checkClick()) {
-                    val intent = Intent(this, Home_Screen::class.java)
-                    startActivity(intent)
-                    finish()
-                }
         }
 
         // show/hide pass

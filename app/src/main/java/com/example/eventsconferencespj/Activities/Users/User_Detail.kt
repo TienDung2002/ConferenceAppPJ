@@ -21,6 +21,13 @@ class User_Detail : AppCompatActivity() {
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // lấy data user từ home_screen
+        val bundle : Bundle? = intent.extras
+        val userEmail = bundle?.getString("email")
+        val userPass = bundle?.getString("password")
+        // gán thông tin vào trường
+
+
         binding.backButton.setOnClickListener {
             val intent = Intent(this, Home_Screen::class.java)
             startActivity(intent)
@@ -122,5 +129,4 @@ class User_Detail : AppCompatActivity() {
         val pattern = Patterns.EMAIL_ADDRESS
         return pattern.matcher(email).matches()
     }
-
 }

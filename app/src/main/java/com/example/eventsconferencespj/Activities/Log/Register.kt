@@ -12,6 +12,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.example.eventsconferencespj.Activities.Payments.Payments
+import com.example.eventsconferencespj.MySQL.DatabaseHelper.DbHelper
 import com.example.eventsconferencespj.PreventDoubleClick
 import com.example.eventsconferencespj.R
 import com.example.eventsconferencespj.databinding.ActivityRegisterBinding
@@ -22,6 +23,7 @@ class Register : AppCompatActivity() {
     private var isShowPassword_1 = false
     private var isShowPassword_2 = false
     private lateinit var binding : ActivityRegisterBinding
+    private lateinit var databaseHelper: DbHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,8 @@ class Register : AppCompatActivity() {
         val emailTextInputLayout = binding.emailTextInputLayout
         val passwordTextInputLayout_1 = binding.passwordTextInputLayout1
         val passwordTextInputLayout_2 = binding.passwordTextInputLayout1
+
+        databaseHelper = DbHelper(this)
 
         binding.goToLogin.setOnClickListener {
             if (PreventDoubleClick.checkClick()) {
@@ -55,15 +59,25 @@ class Register : AppCompatActivity() {
             if (email.isEmpty() || !isEmailValid(email)) emailTextInputLayout.error = "Email trống hoặc không hợp lệ" else emailTextInputLayout.error = null
             if (password_1.isEmpty()) passwordTextInputLayout_1.error = "Nhập mật khẩu" else passwordTextInputLayout_1.error = null
             if (password_2.isEmpty()) passwordTextInputLayout_2.error = "Nhập lại mật khẩu" else passwordTextInputLayout_2.error = null
+            if (password_1 !== password_2) Toast.makeText(applicationContext, "Nhập lại mật khẩu không khớp", Toast.LENGTH_SHORT).show()
 
-            // Còn check 2 mật khẩu trùng nhau nữa
-
-            if ((email.isNotEmpty() && isEmailValid(email)) && password_1.isNotEmpty() && password_2.isNotEmpty()) {
-                Toast.makeText(this, "Đăng ký thành công, trở lại đăng nhập!", Toast.LENGTH_SHORT).show()
-                if (PreventDoubleClick.checkClick()) {
-                    val intent = Intent(this, Login::class.java)
-                    startActivity(intent)
-                    finish()
+            if ((email.isNotEmpty() && isEmailValid(email)) && password_1.isNotEmpty() && password_2.isNotEmpty() && password_1 == password_2) {
+                val checkemail = databaseHelper.CheckEmail(email)
+                if (checkemail) {
+                    val insert = databaseHelper.Insert(email, password_1)
+                    if (insert) {
+                        Toast.makeText(this, "Đăng ký thành công, trở lại đăng nhập!", Toast.LENGTH_SHORT).show()
+                        // Ngăn bấm nút 2 lần
+                        if (PreventDoubleClick.checkClick()) {
+                            val intent = Intent(this, Login::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    } else {
+                        Toast.makeText(this, "Thêm dữ liệu thất bại", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, "Email đã tồn tại", Toast.LENGTH_SHORT).show()
                 }
             }
         }
