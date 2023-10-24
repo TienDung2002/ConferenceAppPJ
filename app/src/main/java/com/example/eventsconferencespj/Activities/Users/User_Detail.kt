@@ -1,10 +1,12 @@
 package com.example.eventsconferencespj.Activities.Users
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -35,30 +37,29 @@ class User_Detail : AppCompatActivity() {
         val bundle: Bundle? = intent.extras
         val userEmail = bundle?.getString("email")
         val userPass = bundle?.getString("password")
+        val userName = bundle?.getString("name")
         // chuyển từ string sang dạng editable
         val editableUserEmail = userEmail?.let { Editable.Factory.getInstance().newEditable(it) }
-            ?: Editable.Factory.getInstance().newEditable(userEmail)
+            ?: Editable.Factory.getInstance().newEditable("default email")
         val editableUserPass = userPass?.let { Editable.Factory.getInstance().newEditable(it) }
-            ?: Editable.Factory.getInstance().newEditable(userPass)
-//        val editableUserEmail = Editable.Factory.getInstance().newEditable(userEmail)
-//        val editableUserPass = Editable.Factory.getInstance().newEditable(userPass)
-        // gán vào view model
+            ?: Editable.Factory.getInstance().newEditable("")
+        val editableUserName = userName?.let { Editable.Factory.getInstance().newEditable(it) }
+            ?: Editable.Factory.getInstance().newEditable("New User")
+         //gán vào model
         userModel.email = editableUserEmail
         userModel.pass = editableUserPass
+        userModel.name = editableUserName
 
-        // gán thông tin từ viewmodel vào các trường
-        val getPhone = databaseHelper.getPhoneNumberFromDatabase()
-        val editablePhone = Editable.Factory.getInstance().newEditable(getPhone.toString())
         binding.emailDetail.text = userModel.email
         binding.passDetail.text = userModel.pass
-        binding.phoneDetail.text = editablePhone
-        binding.passDetail.text = userModel.pass
-
-
+        binding.nameDetail.text = userModel.name
+        binding.phoneDetail.text = userModel.phone
 
         binding.backButton.setOnClickListener {
             val intent = Intent(this, Home_Screen::class.java)
-            intent.putExtra("nameChange", userModel.name)
+            intent.putExtra("email", userModel.email)
+            intent.putExtra("password", userModel.pass)
+            intent.putExtra("name", userModel.name)
             startActivity(intent)
         }
 
@@ -87,7 +88,7 @@ class User_Detail : AppCompatActivity() {
                     Toast.makeText(this, "Không để trống tên", Toast.LENGTH_SHORT).show()
                     valid = false
                 }
-                if (phone.isEmpty() || (phone.length != 10)) {
+                if (phone.length != 10) {
                     Toast.makeText(this, "SĐT phải chứa 10 số", Toast.LENGTH_SHORT).show()
                     valid = false
                 }
@@ -103,15 +104,21 @@ class User_Detail : AppCompatActivity() {
                 if (valid) {
                     val phone = phone.toInt()
                     val phoneNum = databaseHelper.InsertPhone(phone)
+
                     if (phoneNum) {
-                        val savePhone = databaseHelper.getPhoneNumberFromDatabase()
-                        userModel.phone =
-                            Editable.Factory.getInstance().newEditable(savePhone.toString())
-                        binding.phoneDetail.text = userModel.phone
+                        val getPhone = databaseHelper.getPhoneNumber()
+                        userModel.phone = Editable.Factory.getInstance().newEditable(getPhone.toString())
                     } else {
                         Toast.makeText(this, "Cập nhật SĐT thất bại", Toast.LENGTH_SHORT).show()
                     }
 
+                    // Cập nhật mật khẩu mới trong cơ sở dữ liệu
+                    val isPasswordUpdated = databaseHelper.updatePassword(email, pass)
+                    if (isPasswordUpdated) {
+                        Toast.makeText(this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show()
+                    }
                     binding.changeDataUser.text = "Cập nhật thông tin"
                     // Ngăn chỉnh sửa EditText và ẩn ShowPassBtn
                     checkStateEdit(false)

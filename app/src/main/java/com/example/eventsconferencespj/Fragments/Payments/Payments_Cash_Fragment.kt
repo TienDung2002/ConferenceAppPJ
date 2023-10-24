@@ -23,6 +23,7 @@ class Payments_Cash_Fragment : Fragment() {
         buttonFinish.setOnClickListener {
 //             activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
             val intent = Intent(activity, Home_Screen::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
         return cashPopup

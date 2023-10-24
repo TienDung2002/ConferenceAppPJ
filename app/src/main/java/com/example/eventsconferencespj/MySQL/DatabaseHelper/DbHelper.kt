@@ -38,7 +38,8 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         sqLiteDatabase.close()
         return result != -1L
     }
-    fun getPhoneNumberFromDatabase(): Int? {
+
+    fun getPhoneNumber(): Int? {
         val sqLiteDatabase = this.readableDatabase
         val query = "SELECT phone FROM user" // Chọn số điện thoại từ bảng user
         val cursor = sqLiteDatabase.rawQuery(query, null)
@@ -64,10 +65,33 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
 
     fun CheckLogin(email: String, password: String): Boolean {
         val sqLiteDatabase = this.readableDatabase
-        val cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE email=? AND password=?", arrayOf(email, password))
+        val cursor = sqLiteDatabase.rawQuery(
+            "SELECT * FROM user WHERE email=? AND password=?",
+            arrayOf(email, password)
+        )
         val isLoggedIn = cursor.count > 0
         cursor.close()
         sqLiteDatabase.close()
         return isLoggedIn
     }
+
+    fun updatePassword(email: String, newPassword: String): Boolean {
+        val sqLiteDatabase = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("password", newPassword)
+
+        // Cập nhật mật khẩu dựa trên email
+        val updatedRows = sqLiteDatabase.update(
+            "user",
+            contentValues,
+            "email = ?",
+            arrayOf(email)
+        )
+
+        sqLiteDatabase.close()
+
+        // Kiểm tra xem có dòng nào đã được cập nhật không
+        return updatedRows > 0
+    }
+
 }

@@ -8,7 +8,9 @@ class HomeScreenViewModel : ViewModel() {
     private val conferenceDataList: MutableList<ConfeData> = mutableListOf()
     var userEmail: String? = null
     var userPass: String? = null
-    var nameChange: String? = ""
+    var Name: String? = "New User"
+    var userPhone : String = ""
+
 
     // Thêm dữ liệu vào conferenceDataList.
     fun addConferenceData(conferenceData: ConfeData) {

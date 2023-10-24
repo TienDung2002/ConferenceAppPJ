@@ -74,9 +74,10 @@ class Login : AppCompatActivity() {
                         intent.putExtra("email", email)
                         intent.putExtra("password", password)
                         startActivity(intent)
+                        finish()
                     }
                 } else {
-                    Toast.makeText(this, "Tài khoản không tồn tại!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Tài khoản không tồn tại", Toast.LENGTH_SHORT).show()
                 }
             }
         }

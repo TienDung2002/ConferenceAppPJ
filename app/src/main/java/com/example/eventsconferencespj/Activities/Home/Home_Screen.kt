@@ -20,7 +20,8 @@ import com.example.eventsconferencespj.databinding.ActivityHomeScreenBinding
 //class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 class Home_Screen : AppCompatActivity(){
     private lateinit var binding: ActivityHomeScreenBinding
-    private lateinit var viewModel: HomeScreenViewModel
+//    private lateinit var viewModel: HomeScreenViewModel
+    private var viewModel : HomeScreenViewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,35 +29,22 @@ class Home_Screen : AppCompatActivity(){
         setContentView(binding.root)
 
         // khởi tạo ViewModel
-        viewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
+//        viewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
 
         // lấy email, pass từ login và lưu vào viewModel
         val bundle : Bundle? = intent.extras
         viewModel.userEmail = bundle?.getString("email")
         viewModel.userPass = bundle?.getString("password")
-        viewModel.nameChange =  bundle?.getString("nameChange")
+        viewModel.Name = bundle?.getString("name")?: "New User"
         // Sử dụng dữ liệu từ ViewModel
         val userEmailVM = viewModel.userEmail
         val userPassVM = viewModel.userPass
-        binding.userName.text = viewModel.nameChange
+        binding.userName.text = viewModel.Name
 
         // Đổi màu hint của search bar
         val searchItem: SearchView = binding.searchView
         searchItem.setQueryHint(Html.fromHtml("<font color = #ffffff>" + "Tìm kiếm" + "</font>"))
-        searchItem.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                // Xử lý tìm kiếm ở đây
-                // Ẩn bàn phím
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(searchItem.windowToken, 0)
-                return true
-            }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                // Xử lý sự thay đổi văn bản trong ô tìm kiếm (nếu cần)
-                return true
-            }
-        })
 
         // Nhấn vào nav_location
         binding.navLocation.setOnClickListener {
@@ -106,5 +94,22 @@ class Home_Screen : AppCompatActivity(){
                 startActivity(intent)
             }
         })
+
+
+        // tìm kiếm
+        searchItem.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // Ẩn bàn phím
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(searchItem.windowToken, 0)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return true
+            }
+        })
     }
+
+
 }
