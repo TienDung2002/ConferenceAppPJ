@@ -12,7 +12,7 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE user(ID INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT)")
+        db.execSQL("CREATE TABLE user(ID INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, name TEXT, phone INTEGER DEFAULT NULL)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -28,6 +28,29 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         val result = sqLiteDatabase.insert("user", null, contentValues)
         sqLiteDatabase.close()
         return result != -1L
+    }
+
+    fun InsertPhone(phone: Int): Boolean {
+        val sqLiteDatabase = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("phone", phone)
+        val result = sqLiteDatabase.insert("user", null, contentValues)
+        sqLiteDatabase.close()
+        return result != -1L
+    }
+    fun getPhoneNumberFromDatabase(): Int? {
+        val sqLiteDatabase = this.readableDatabase
+        val query = "SELECT phone FROM user" // Chọn số điện thoại từ bảng user
+        val cursor = sqLiteDatabase.rawQuery(query, null)
+        val phoneNumber: Int?
+        if (cursor.moveToFirst()) {
+            phoneNumber = cursor.getInt(cursor.getColumnIndexOrThrow("phone"))
+        } else {
+            phoneNumber = null
+        }
+        cursor.close()
+        sqLiteDatabase.close()
+        return phoneNumber
     }
 
     fun CheckEmail(email: String): Boolean {

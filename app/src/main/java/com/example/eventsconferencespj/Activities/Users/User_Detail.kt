@@ -8,35 +8,58 @@ import android.text.InputType
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.eventsconferencespj.Activities.Home.Home_Screen
 import com.example.eventsconferencespj.Activities.Log.Login
+import com.example.eventsconferencespj.MySQL.DatabaseHelper.DbHelper
 import com.example.eventsconferencespj.R
 import com.example.eventsconferencespj.databinding.ActivityUserDetailBinding
 
 class User_Detail : AppCompatActivity() {
     private var isShowPassword = false
     private lateinit var binding: ActivityUserDetailBinding
+    private lateinit var databaseHelper: DbHelper
+    private lateinit var userModel: UserModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // khởi tạo dbHelper
+        databaseHelper = DbHelper(this)
+        // viewModel
+        val userModel = ViewModelProvider(this).get(UserModel::class.java)
+
         // lấy data user từ home_screen
-        val bundle : Bundle? = intent.extras
+        val bundle: Bundle? = intent.extras
         val userEmail = bundle?.getString("email")
         val userPass = bundle?.getString("password")
-        // gán thông tin vào trường
-        val editableUserEmail = Editable.Factory.getInstance().newEditable(userEmail)
-        val editableUserPass = Editable.Factory.getInstance().newEditable(userPass)
-        binding.emailDetail.text = editableUserEmail
-        binding.passDetail.text = editableUserPass
+        // chuyển từ string sang dạng editable
+        val editableUserEmail = userEmail?.let { Editable.Factory.getInstance().newEditable(it) }
+            ?: Editable.Factory.getInstance().newEditable(userEmail)
+        val editableUserPass = userPass?.let { Editable.Factory.getInstance().newEditable(it) }
+            ?: Editable.Factory.getInstance().newEditable(userPass)
+//        val editableUserEmail = Editable.Factory.getInstance().newEditable(userEmail)
+//        val editableUserPass = Editable.Factory.getInstance().newEditable(userPass)
+        // gán vào view model
+        userModel.email = editableUserEmail
+        userModel.pass = editableUserPass
+
+        // gán thông tin từ viewmodel vào các trường
+        val getPhone = databaseHelper.getPhoneNumberFromDatabase()
+        val editablePhone = Editable.Factory.getInstance().newEditable(getPhone.toString())
+        binding.emailDetail.text = userModel.email
+        binding.passDetail.text = userModel.pass
+        binding.phoneDetail.text = editablePhone
+        binding.passDetail.text = userModel.pass
+
 
 
         binding.backButton.setOnClickListener {
             val intent = Intent(this, Home_Screen::class.java)
+            intent.putExtra("nameChange", userModel.name)
             startActivity(intent)
-            finish()
         }
 
         // show/hide password
@@ -64,12 +87,13 @@ class User_Detail : AppCompatActivity() {
                     Toast.makeText(this, "Không để trống tên", Toast.LENGTH_SHORT).show()
                     valid = false
                 }
-                if (phone.isEmpty()) {
-                    Toast.makeText(this, "Không để trống SĐT", Toast.LENGTH_SHORT).show()
+                if (phone.isEmpty() || (phone.length != 10)) {
+                    Toast.makeText(this, "SĐT phải chứa 10 số", Toast.LENGTH_SHORT).show()
                     valid = false
                 }
                 if (email.isEmpty() || !isEmailValid(email)) {
-                    Toast.makeText(this, "Email trống hoặc không hợp lệ!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Email trống hoặc không hợp lệ!", Toast.LENGTH_SHORT)
+                        .show()
                     valid = false
                 }
                 if (pass.isEmpty()) {
@@ -77,10 +101,18 @@ class User_Detail : AppCompatActivity() {
                     valid = false
                 }
                 if (valid) {
+                    val phone = phone.toInt()
+                    val phoneNum = databaseHelper.InsertPhone(phone)
+                    if (phoneNum) {
+                        val savePhone = databaseHelper.getPhoneNumberFromDatabase()
+                        userModel.phone =
+                            Editable.Factory.getInstance().newEditable(savePhone.toString())
+                        binding.phoneDetail.text = userModel.phone
+                    } else {
+                        Toast.makeText(this, "Cập nhật SĐT thất bại", Toast.LENGTH_SHORT).show()
+                    }
+
                     binding.changeDataUser.text = "Cập nhật thông tin"
-                    // xử lý lưu thông tin vào db ở đây
-                    //
-                    //
                     // Ngăn chỉnh sửa EditText và ẩn ShowPassBtn
                     checkStateEdit(false)
                     Toast.makeText(this, "Lưu thành công!", Toast.LENGTH_SHORT).show()
@@ -94,7 +126,6 @@ class User_Detail : AppCompatActivity() {
             startActivity(intentUserDetail)
             Toast.makeText(this, "Bạn đã đăng xuất", Toast.LENGTH_SHORT).show()
             finish()
-            // dùng viewmodel để cập nhật lại thông tin cho tất cả các activity nếu đăng xuất ra và log lại tài khoản khác
         }
     }
 
@@ -102,7 +133,8 @@ class User_Detail : AppCompatActivity() {
         // Đảm bảo rằng trường mật khẩu sẽ luôn hiển thị ngay lần click đầu tiên.
         if (!isShowPassword) {
             isShowPassword = true
-            binding.passDetail.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.passDetail.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             binding.ShowPassBtn.setImageResource(R.drawable.eye_slash)
             binding.passDetail.setSelection(binding.passDetail.text.length)
             binding.passDetail.requestFocus()
@@ -110,11 +142,13 @@ class User_Detail : AppCompatActivity() {
             isShowPassword = false
             if (isShowPassword) {
                 // Pass đang ẩn thì hiện
-                binding.passDetail.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                binding.passDetail.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
                 binding.ShowPassBtn.setImageResource(R.drawable.eye_slash)
             } else {
                 // Pass đang hiện thì ẩn
-                binding.passDetail.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                binding.passDetail.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                 binding.ShowPassBtn.setImageResource(R.drawable.eye_open)
             }
             binding.passDetail.setSelection(binding.passDetail.text.length)
@@ -124,7 +158,7 @@ class User_Detail : AppCompatActivity() {
     private fun checkStateEdit(state: Boolean) {
         binding.nameDetail.isEnabled = state
         binding.phoneDetail.isEnabled = state
-        binding.emailDetail.isEnabled = state
+        binding.emailDetail.isEnabled = false
         binding.passDetail.isEnabled = state
         binding.ShowPassBtn.visibility = if (state) View.VISIBLE else View.GONE
     }

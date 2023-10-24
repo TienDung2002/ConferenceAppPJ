@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class HomeScreenViewModel : ViewModel() {
     private val conferenceDataList: MutableList<ConfeData> = mutableListOf()
+    var userEmail: String? = null
+    var userPass: String? = null
+    var nameChange: String? = ""
 
     // Thêm dữ liệu vào conferenceDataList.
     fun addConferenceData(conferenceData: ConfeData) {

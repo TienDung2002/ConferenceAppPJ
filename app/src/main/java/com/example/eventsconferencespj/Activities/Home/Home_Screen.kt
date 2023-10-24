@@ -30,10 +30,15 @@ class Home_Screen : AppCompatActivity(){
         // khởi tạo ViewModel
         viewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
 
-        // lấy email, pass từ login
+        // lấy email, pass từ login và lưu vào viewModel
         val bundle : Bundle? = intent.extras
-        val userEmail = bundle?.getString("email")
-        val userPass = bundle?.getString("password")
+        viewModel.userEmail = bundle?.getString("email")
+        viewModel.userPass = bundle?.getString("password")
+        viewModel.nameChange =  bundle?.getString("nameChange")
+        // Sử dụng dữ liệu từ ViewModel
+        val userEmailVM = viewModel.userEmail
+        val userPassVM = viewModel.userPass
+        binding.userName.text = viewModel.nameChange
 
         // Đổi màu hint của search bar
         val searchItem: SearchView = binding.searchView
@@ -65,8 +70,8 @@ class Home_Screen : AppCompatActivity(){
         binding.navProfile.setOnClickListener{
             if (PreventDoubleClick.checkClick()) {
                 val intent = Intent(this, User_Detail::class.java)
-                intent.putExtra("email", userEmail)
-                intent.putExtra("password", userPass)
+                intent.putExtra("email", userEmailVM)
+                intent.putExtra("password", userPassVM)
                 startActivity(intent)
             }
         }

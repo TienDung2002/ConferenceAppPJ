@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import com.example.eventsconferencespj.Activities.Home.Home_Screen
 import com.example.eventsconferencespj.Activities.Location.Location
 import com.example.eventsconferencespj.MySQL.DatabaseHelper.DbHelper
@@ -43,6 +44,7 @@ class Login : AppCompatActivity() {
                 // Thực hiện chuyển đến màn hình đăng ký
                 val intent = Intent(this, Register::class.java)
                 startActivity(intent)
+                finish()
             }
         }
 
@@ -67,23 +69,16 @@ class Login : AppCompatActivity() {
                 val checklogin = databaseHelper.CheckLogin(email, password)
                 // Chuyển đến màn hình chính
                 if (checklogin) {
-                    // Thực hiện chuyển đến màn hình đăng ký
                     if (PreventDoubleClick.checkClick()) {
                         val intent = Intent(this, Home_Screen::class.java)
                         intent.putExtra("email", email)
                         intent.putExtra("password", password)
                         startActivity(intent)
-                        finish()
                     }
+                } else {
+                    Toast.makeText(this, "Tài khoản không tồn tại!", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            // test
-//                if (PreventDoubleClick.checkClick()) {
-//                    val intent = Intent(this, Home_Screen::class.java)
-//                    startActivity(intent)
-//                    finish()
-//                }
         }
 
         // show/hide pass

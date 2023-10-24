@@ -80,7 +80,7 @@
                         android:inputType="text"
                         android:lines="1"
                         android:padding="10dp"
-                        android:text="name user"
+                        android:text="New user"
                         android:textColor="@color/main_white"
                         android:textSize="17sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -138,7 +138,7 @@
                         android:inputType="phone"
                         android:lines="1"
                         android:padding="10dp"
-                        android:text="0123456789"
+                        android:text=""
                         android:textColor="@color/main_white"
                         android:textSize="17sp"
                         tools:ignore="TextFields" />
