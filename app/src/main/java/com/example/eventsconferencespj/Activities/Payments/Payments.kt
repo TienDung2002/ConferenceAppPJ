@@ -1,11 +1,14 @@
 package com.example.eventsconferencespj.Activities.Payments
 
+import android.app.Activity
 import android.content.Intent
 import android.icu.text.NumberFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.eventsconferencespj.Activities.Conf_Detail.ConfeDetail
 import com.example.eventsconferencespj.Fragments.Payments.Payments_Cash_Fragment
 import com.example.eventsconferencespj.Fragments.Payments.Payments_Success_Fragment
@@ -24,33 +27,34 @@ class Payments : AppCompatActivity() {
         // Nhận dữ liệu từ Confe detail
         val bundle: Bundle? = intent.extras
         val nameConf = bundle?.getString("name")
-        val addressConf = bundle?.getString("address")
         val priceConf = bundle?.getInt("price")
         val required = bundle?.getInt("required")
-        val numberOfSeatConf = bundle?.getInt("seat")
-        val rating = bundle?.getDouble("rating")
         val imageConf = bundle?.getInt("image")
 
         binding.backButton.setOnClickListener {
-            val intent = Intent(this@Payments, ConfeDetail::class.java)
-            intent.putExtra("address", addressConf)
-            intent.putExtra("price", priceConf)
-            intent.putExtra("required", required)
-            intent.putExtra("seat", numberOfSeatConf)
-            intent.putExtra("rating", rating)
-            intent.putExtra("image", imageConf)
-            startActivity(intent)
+            val resultIntent = Intent()
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
         }
 
         binding.goToPaymentBtn.setOnClickListener {
-            val fragment = if (binding.cashBtn.isChecked) {
-                // Nếu cashBtn được chọn, mở fragment cashPopup
-                Payments_Cash_Fragment()
-            } else {
-                Payments_Success_Fragment()
-            }
-
+            val fragment: Fragment
             val transaction = supportFragmentManager.beginTransaction()
+
+            if (binding.cashBtn.isChecked) {
+                // Nếu cashBtn được chọn, mở fragment cashPopup
+                fragment = Payments_Cash_Fragment()
+            } else {
+                val cardNumber = binding.addNumCard.text.toString()
+                if (cardNumber.isBlank()) {
+                    Toast.makeText(this, "Vui lòng nhập số thẻ", Toast.LENGTH_SHORT).show()
+                    // return@setOnClickListener dùng để thoát khỏi lambda của setOnClickListener
+                    // hiểu đơn giản là nếu đk này k đáp ứng thì code bên dưới nó k dc thực thi
+                    return@setOnClickListener
+                }
+                // nếu cardNumber được nhập thì mở fragment
+                fragment = Payments_Success_Fragment()
+            }
             transaction.replace(R.id.successFragPopup, fragment)
             transaction.addToBackStack(null) // Thêm Fragment vào back stack
             transaction.commit()

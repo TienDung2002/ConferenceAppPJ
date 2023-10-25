@@ -8,6 +8,8 @@ import android.os.SystemClock
 import android.text.Html
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eventsconferencespj.Activities.Conf_Detail.ConfeDetail
@@ -20,7 +22,6 @@ import com.example.eventsconferencespj.databinding.ActivityHomeScreenBinding
 class Home_Screen : AppCompatActivity(){
     private lateinit var binding: ActivityHomeScreenBinding
     private lateinit var viewModel: HomeScreenViewModel
-    private var isSearching = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +80,12 @@ class Home_Screen : AppCompatActivity(){
         binding.HorizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.HorizontalRecyclerView.adapter = adapter
 
+
+        val startConfeDetail = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result ->
+            if (result.resultCode == RESULT_OK) {
+                // Xử lí dữ liệu nhận về nếu cần thiết
+            }
+        }
         // Click vào từng item trong recycler
         adapter.setOnItemClickListener(object : HomeAdapter.onItemClickListener{
             override fun onItemClicked(position: Int) {
@@ -90,7 +97,7 @@ class Home_Screen : AppCompatActivity(){
                 intent.putExtra("seat", confDataList[position].seat)
                 intent.putExtra("rating", confDataList[position].ratingStar)
                 intent.putExtra("image", confDataList[position].image)
-                startActivity(intent)
+                startConfeDetail.launch(intent)
             }
         })
 
@@ -103,7 +110,6 @@ class Home_Screen : AppCompatActivity(){
                 imm.hideSoftInputFromWindow(searchItem.windowToken, 0)
                 // clear focus
                 searchItem.clearFocus()
-//                isSearching = false
                 adapter.filter.filter(filterString)
                 return true
             }
@@ -114,7 +120,6 @@ class Home_Screen : AppCompatActivity(){
                 } else {
                     // Nếu có ký tự trong searchItem, áp dụng filter
                     adapter.filter.filter(filterString)
-//                    isSearching = true
                 }
                 return true
             }
@@ -123,11 +128,8 @@ class Home_Screen : AppCompatActivity(){
         searchItem.setOnCloseListener {
             adapter.resetOriginalList()
             false
-//            if (isSearching) {
-//                adapter.resetOriginalList()
-//            }
-//            false
         }
+        // bấm vào bất cứ đâu cũng thoát focus khỏi search
         binding.rootLayout.setOnClickListener {
             searchItem.clearFocus()
         }

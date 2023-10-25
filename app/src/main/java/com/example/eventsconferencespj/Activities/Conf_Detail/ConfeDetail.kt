@@ -1,11 +1,13 @@
 package com.example.eventsconferencespj.Activities.Conf_Detail
 
+import android.app.Activity
 import android.content.Intent
 import android.icu.text.NumberFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.eventsconferencespj.Activities.Home.Home_Screen
 import com.example.eventsconferencespj.Activities.Payments.Payments
 import com.example.eventsconferencespj.Activities.Users.User_Detail
@@ -23,8 +25,9 @@ class ConfeDetail : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.backButton.setOnClickListener{
-            val intent = Intent(this@ConfeDetail, Home_Screen::class.java)
-            startActivity(intent)
+            // Set the result as RESULT_OK before finishing
+            val resultIntent = Intent()
+            setResult(Activity.RESULT_OK, resultIntent)
             finish()
         }
 
@@ -38,17 +41,16 @@ class ConfeDetail : AppCompatActivity() {
         val rating = bundle?.getDouble("rating")
         val imageConf = bundle?.getInt("image")
 
+
+        val startPayments = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){}
         binding.goToPaymentBtn.setOnClickListener{
             if (PreventDoubleClick.checkClick()) {
                 val intent = Intent(this@ConfeDetail, Payments::class.java)
                 intent.putExtra("name", nameConf)
-                intent.putExtra("address", addressConf)
                 intent.putExtra("price", priceConf)
                 intent.putExtra("required", required)
-                intent.putExtra("seat", numberOfSeatConf)
-                intent.putExtra("rating", rating)
                 intent.putExtra("image", imageConf)
-                startActivity(intent)
+                startPayments.launch(intent)
             }
         }
 
