@@ -7,9 +7,12 @@ import android.graphics.Paint
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RectShape
 import android.icu.text.NumberFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
@@ -18,8 +21,10 @@ import com.example.eventsconferencespj.R
 import java.util.Locale
 
 
-class HomeAdapter(private val list: List<ConfeData>) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter(private var list: List<ConfeData>, private val noDataImage: ImageView) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(), Filterable {
     lateinit var mListener: onItemClickListener
+    private var originalData: List<ConfeData> = list
+    private var filteredData: List<ConfeData> = list
 
     interface onItemClickListener{
         fun onItemClicked(position: Int){
@@ -40,7 +45,6 @@ class HomeAdapter(private val list: List<ConfeData>) : RecyclerView.Adapter<Home
             ratingConf = view.findViewById(R.id.ratingID)
             price = view.findViewById(R.id.pricePerDay)
             img = view.findViewById(R.id.conf_img)
-
 
             view.setOnClickListener {
                 listener.onItemClicked(layoutPosition)
@@ -65,4 +69,58 @@ class HomeAdapter(private val list: List<ConfeData>) : RecyclerView.Adapter<Home
     }
 
     override fun getItemCount():Int = list.size
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val query = constraint.toString().lowercase()
+                val filteredList = if (query.isEmpty()) {
+                    list
+                } else {
+                    list.filter { item ->
+                        item.confName.lowercase().contains(query)
+                    }
+                }
+
+                val filterResults = FilterResults()
+                filterResults.count = filteredList.size
+                filterResults.values = filteredList
+
+                // check xem kết quả lọc
+                Log.d("FilteredList", filteredList.toString())
+
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                val filteredList = results?.values
+                filteredData = if (filteredList is List<*>) {
+                    filteredList.filterIsInstance<ConfeData>()
+                } else {
+                    emptyList()
+                }
+                list = filteredData
+                notifyDataSetChanged()
+
+                if (list.isEmpty()) {
+                    showNoDataFound()
+                } else {
+                    hideNoDataFound()
+                }
+            }
+        }
+    }
+    fun resetOriginalList() {
+        list = originalData
+        hideNoDataFound()
+        notifyDataSetChanged()
+    }
+
+    fun showNoDataFound() {
+        noDataImage.visibility = View.VISIBLE
+    }
+
+    fun hideNoDataFound() {
+        noDataImage.visibility = View.GONE
+    }
 }

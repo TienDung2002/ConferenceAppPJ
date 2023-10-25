@@ -21,8 +21,6 @@ class Payments_Success_Fragment : Fragment() {
         val buttonFinish = popup.findViewById<Button>(R.id.finishBtn)
         buttonFinish.setOnClickListener {
 //            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
-//            val intent = Intent(activity, Home_Screen::class.java)
-//            startActivity(intent)
             val intent = Intent(activity, Home_Screen::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)

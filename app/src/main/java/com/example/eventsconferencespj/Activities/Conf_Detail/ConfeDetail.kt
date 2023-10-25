@@ -25,6 +25,7 @@ class ConfeDetail : AppCompatActivity() {
         binding.backButton.setOnClickListener{
             val intent = Intent(this@ConfeDetail, Home_Screen::class.java)
             startActivity(intent)
+            finish()
         }
 
         // nhận dũ liệu từ home-screen

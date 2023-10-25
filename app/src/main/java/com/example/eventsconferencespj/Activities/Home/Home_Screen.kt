@@ -17,11 +17,10 @@ import com.example.eventsconferencespj.PreventDoubleClick
 import com.example.eventsconferencespj.R
 import com.example.eventsconferencespj.databinding.ActivityHomeScreenBinding
 
-//class Home_Screen : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 class Home_Screen : AppCompatActivity(){
     private lateinit var binding: ActivityHomeScreenBinding
-//    private lateinit var viewModel: HomeScreenViewModel
-    private var viewModel : HomeScreenViewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
+    private lateinit var viewModel: HomeScreenViewModel
+    private var isSearching = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +28,7 @@ class Home_Screen : AppCompatActivity(){
         setContentView(binding.root)
 
         // khởi tạo ViewModel
-//        viewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
 
         // lấy email, pass từ login và lưu vào viewModel
         val bundle : Bundle? = intent.extras
@@ -76,7 +75,7 @@ class Home_Screen : AppCompatActivity(){
 
         // Gán danh sách dữ liệu từ ViewModel cho adapter
         val confDataList = viewModel.getConferenceDataList()
-        var adapter = HomeAdapter(confDataList)
+        var adapter = HomeAdapter(confDataList, binding.noDataImage)
         binding.HorizontalRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.HorizontalRecyclerView.adapter = adapter
 
@@ -98,18 +97,39 @@ class Home_Screen : AppCompatActivity(){
 
         // tìm kiếm
         searchItem.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
+            override fun onQueryTextSubmit(filterString: String): Boolean {
                 // Ẩn bàn phím
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(searchItem.windowToken, 0)
+                // clear focus
+                searchItem.clearFocus()
+//                isSearching = false
+                adapter.filter.filter(filterString)
                 return true
             }
 
-            override fun onQueryTextChange(newText: String): Boolean {
+            override fun onQueryTextChange(filterString: String): Boolean {
+                if (filterString.isEmpty()) {
+                    adapter.resetOriginalList()
+                } else {
+                    // Nếu có ký tự trong searchItem, áp dụng filter
+                    adapter.filter.filter(filterString)
+//                    isSearching = true
+                }
                 return true
             }
         })
+        // nút close của searchView, nếu bấm close thì load lại DS
+        searchItem.setOnCloseListener {
+            adapter.resetOriginalList()
+            false
+//            if (isSearching) {
+//                adapter.resetOriginalList()
+//            }
+//            false
+        }
+        binding.rootLayout.setOnClickListener {
+            searchItem.clearFocus()
+        }
     }
-
-
 }
