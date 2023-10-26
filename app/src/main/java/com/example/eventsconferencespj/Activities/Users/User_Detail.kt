@@ -1,13 +1,11 @@
 package com.example.eventsconferencespj.Activities.Users
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
 import android.util.Log
-import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -21,7 +19,6 @@ class User_Detail : AppCompatActivity() {
     private var isShowPassword = false
     private lateinit var binding: ActivityUserDetailBinding
     private lateinit var databaseHelper: DbHelper
-    private lateinit var userModel: UserModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +43,7 @@ class User_Detail : AppCompatActivity() {
         userModel.pass = Editable.Factory.getInstance().newEditable(passFromDB)
         userModel.name = Editable.Factory.getInstance().newEditable(nameFromDB)
         userModel.phone = Editable.Factory.getInstance().newEditable(phoneFromDB.toString())
-        Log.d("phoneCheck", userModel.phone.toString())         // trả ra 0
+        Log.d("phoneCheck", userModel.phone.toString())
 
         // gán vào trường tương ứng
         binding.emailDetail.text = userModel.email
@@ -92,22 +89,22 @@ class User_Detail : AppCompatActivity() {
                     valid = false
                 }
                 if (valid) {
-//                    val phone = phone.toInt()
-//                    val isPhoneUpdated = databaseHelper.InsertPhone(phone)
+                    // cập nhật tên user
                     val nameUpdate = databaseHelper.UpdateName(email, name)
+                    // Cập nhật mật khẩu mới
                     val passwordUpdate = databaseHelper.updatePassword(email, pass)
+                    // cập nhật sdt
                     val phoneUpdate = databaseHelper.updatePhone(email, phone.toInt())
                     val getPhone = databaseHelper.getPhoneNum(email)
+
                     val getName = databaseHelper.getName(email)
 
-                    // cập nhật tên user
+                    // gán dữ liệu vào các trường trong userdetail
                     if (nameUpdate) userModel.name = Editable.Factory.getInstance().newEditable(getName)
-                    // cập nhật sdt
                     if (phoneUpdate) userModel.phone = Editable.Factory.getInstance().newEditable(getPhone.toString())
-                    // Cập nhật mật khẩu mới trong cơ sở dữ liệu
-                    if (passwordUpdate) Toast.makeText(this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show()
 
                     binding.changeDataUser.text = "Cập nhật thông tin"
+                    binding.passDetail.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                     checkStateEdit(false)
                     Toast.makeText(this, "Lưu thành công!", Toast.LENGTH_SHORT).show()
                 }

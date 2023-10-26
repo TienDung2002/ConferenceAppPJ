@@ -3,9 +3,7 @@ package com.example.eventsconferencespj.Activities.Log
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
 import android.text.InputType
-import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
@@ -13,7 +11,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.example.eventsconferencespj.Activities.Home.Home_Screen
-import com.example.eventsconferencespj.Activities.Location.Location
 import com.example.eventsconferencespj.MySQL.DatabaseHelper.DbHelper
 import com.example.eventsconferencespj.PreventDoubleClick
 import com.example.eventsconferencespj.R

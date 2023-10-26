@@ -40,6 +40,7 @@ class ConfeDetail : AppCompatActivity() {
         val numberOfSeatConf = bundle?.getInt("seat")
         val rating = bundle?.getDouble("rating")
         val imageConf = bundle?.getInt("image")
+        val emailFromHome = bundle?.getString("email")
 
 
         val startPayments = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){}
@@ -50,6 +51,7 @@ class ConfeDetail : AppCompatActivity() {
                 intent.putExtra("price", priceConf)
                 intent.putExtra("required", required)
                 intent.putExtra("image", imageConf)
+                intent.putExtra("email", emailFromHome)
                 startPayments.launch(intent)
             }
         }

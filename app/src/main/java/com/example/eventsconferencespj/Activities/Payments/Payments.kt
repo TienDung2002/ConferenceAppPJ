@@ -30,6 +30,7 @@ class Payments : AppCompatActivity() {
         val priceConf = bundle?.getInt("price")
         val required = bundle?.getInt("required")
         val imageConf = bundle?.getInt("image")
+        val emailFromConfeDetail = bundle?.getString("email")
 
         binding.backButton.setOnClickListener {
             val resultIntent = Intent()
@@ -40,6 +41,8 @@ class Payments : AppCompatActivity() {
         binding.goToPaymentBtn.setOnClickListener {
             val fragment: Fragment
             val transaction = supportFragmentManager.beginTransaction()
+            val bundle_2 = Bundle()
+            bundle_2.putString("email", emailFromConfeDetail)
 
             if (binding.cashBtn.isChecked) {
                 // Nếu cashBtn được chọn, mở fragment cashPopup
@@ -54,7 +57,10 @@ class Payments : AppCompatActivity() {
                 }
                 // nếu cardNumber được nhập thì mở fragment
                 fragment = Payments_Success_Fragment()
+                fragment.arguments = bundle_2
             }
+            fragment.arguments = bundle_2
+
             transaction.replace(R.id.successFragPopup, fragment)
             transaction.addToBackStack(null) // Thêm Fragment vào back stack
             transaction.commit()

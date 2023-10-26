@@ -4,12 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
 import android.text.Html
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,7 +41,7 @@ class Home_Screen : AppCompatActivity(){
 
         // gán dữ liệu từ viewmodel cho text
         val nameUser = viewModel.userEmail?.let { databaseHelper.getName(it) }
-        binding.userName.text = nameUser
+        binding.userName.text = nameUser?: "New User"
 
         // Đổi màu hint của search bar
         val searchItem: SearchView = binding.searchView
@@ -100,6 +97,7 @@ class Home_Screen : AppCompatActivity(){
                 intent.putExtra("seat", confDataList[position].seat)
                 intent.putExtra("rating", confDataList[position].ratingStar)
                 intent.putExtra("image", confDataList[position].image)
+                intent.putExtra("email", viewModel.userEmail.toString())
                 startConfeDetail.launch(intent)
             }
         })
