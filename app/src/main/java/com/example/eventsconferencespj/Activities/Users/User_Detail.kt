@@ -33,23 +33,22 @@ class User_Detail : AppCompatActivity() {
         // viewModel
         val userModel = ViewModelProvider(this).get(UserModel::class.java)
 
-        // lấy data user từ home_screen
+        // lấy data user từ home_screen và database
         val bundle: Bundle? = intent.extras
         val userEmail = bundle?.getString("email")
-        val userPass = bundle?.getString("password")
-        val userName = bundle?.getString("name")
-        // chuyển từ string sang dạng editable
-        val editableUserEmail = userEmail?.let { Editable.Factory.getInstance().newEditable(it) }
-            ?: Editable.Factory.getInstance().newEditable("default email")
-        val editableUserPass = userPass?.let { Editable.Factory.getInstance().newEditable(it) }
-            ?: Editable.Factory.getInstance().newEditable("")
-        val editableUserName = userName?.let { Editable.Factory.getInstance().newEditable(it) }
-            ?: Editable.Factory.getInstance().newEditable("New User")
-         //gán vào model
-        userModel.email = editableUserEmail
-        userModel.pass = editableUserPass
-        userModel.name = editableUserName
+        val emailFromDB = userEmail?.let { databaseHelper.getEmail(it)} ?: "DefaultEmail@gmail.com"
+        val passFromDB = userEmail?.let { databaseHelper.getPassword(it) }
+        val nameFromDB = userEmail?.let { databaseHelper.getName(it) } ?: "New User"
+        val phoneFromDB = userEmail?.let { databaseHelper.getPhoneNum(it) }
 
+        //gán vào model
+        userModel.email = Editable.Factory.getInstance().newEditable(emailFromDB)
+        userModel.pass = Editable.Factory.getInstance().newEditable(passFromDB)
+        userModel.name = Editable.Factory.getInstance().newEditable(nameFromDB)
+        userModel.phone = Editable.Factory.getInstance().newEditable(phoneFromDB.toString())
+        Log.d("phoneCheck", userModel.phone.toString())         // trả ra 0
+
+        // gán vào trường tương ứng
         binding.emailDetail.text = userModel.email
         binding.passDetail.text = userModel.pass
         binding.nameDetail.text = userModel.name
@@ -57,16 +56,12 @@ class User_Detail : AppCompatActivity() {
 
         binding.backButton.setOnClickListener {
             val intent = Intent(this, Home_Screen::class.java)
-            intent.putExtra("email", userModel.email)
-            intent.putExtra("password", userModel.pass)
-            intent.putExtra("name", userModel.name)
+            intent.putExtra("email", userModel.email.toString())
             startActivity(intent)
         }
 
         // show/hide password
-        binding.ShowPassBtn.setOnClickListener {
-            showOrHidePass()
-        }
+        binding.ShowPassBtn.setOnClickListener { showOrHidePass() }
 
         // Ban đầu, không cho chỉnh sửa và ẩn nút ShowPassBtn
         checkStateEdit(false)
@@ -92,35 +87,27 @@ class User_Detail : AppCompatActivity() {
                     Toast.makeText(this, "SĐT phải chứa 10 số", Toast.LENGTH_SHORT).show()
                     valid = false
                 }
-                if (email.isEmpty() || !isEmailValid(email)) {
-                    Toast.makeText(this, "Email trống hoặc không hợp lệ!", Toast.LENGTH_SHORT)
-                        .show()
-                    valid = false
-                }
                 if (pass.isEmpty()) {
                     Toast.makeText(this, "Không để trống mật khẩu", Toast.LENGTH_SHORT).show()
                     valid = false
                 }
                 if (valid) {
-                    val phone = phone.toInt()
-                    val phoneNum = databaseHelper.InsertPhone(phone)
+//                    val phone = phone.toInt()
+//                    val isPhoneUpdated = databaseHelper.InsertPhone(phone)
+                    val nameUpdate = databaseHelper.UpdateName(email, name)
+                    val passwordUpdate = databaseHelper.updatePassword(email, pass)
+                    val phoneUpdate = databaseHelper.updatePhone(email, phone.toInt())
+                    val getPhone = databaseHelper.getPhoneNum(email)
+                    val getName = databaseHelper.getName(email)
 
-                    if (phoneNum) {
-                        val getPhone = databaseHelper.getPhoneNumber()
-                        userModel.phone = Editable.Factory.getInstance().newEditable(getPhone.toString())
-                    } else {
-                        Toast.makeText(this, "Cập nhật SĐT thất bại", Toast.LENGTH_SHORT).show()
-                    }
-
+                    // cập nhật tên user
+                    if (nameUpdate) userModel.name = Editable.Factory.getInstance().newEditable(getName)
+                    // cập nhật sdt
+                    if (phoneUpdate) userModel.phone = Editable.Factory.getInstance().newEditable(getPhone.toString())
                     // Cập nhật mật khẩu mới trong cơ sở dữ liệu
-                    val isPasswordUpdated = databaseHelper.updatePassword(email, pass)
-                    if (isPasswordUpdated) {
-                        Toast.makeText(this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this, "Đổi mật khẩu thất bại", Toast.LENGTH_SHORT).show()
-                    }
+                    if (passwordUpdate) Toast.makeText(this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show()
+
                     binding.changeDataUser.text = "Cập nhật thông tin"
-                    // Ngăn chỉnh sửa EditText và ẩn ShowPassBtn
                     checkStateEdit(false)
                     Toast.makeText(this, "Lưu thành công!", Toast.LENGTH_SHORT).show()
                 }
@@ -170,9 +157,4 @@ class User_Detail : AppCompatActivity() {
         binding.ShowPassBtn.visibility = if (state) View.VISIBLE else View.GONE
     }
 
-    private fun isEmailValid(email: String): Boolean {
-        // Sử dụng mẫu sẵn có cho email
-        val pattern = Patterns.EMAIL_ADDRESS
-        return pattern.matcher(email).matches()
-    }
 }

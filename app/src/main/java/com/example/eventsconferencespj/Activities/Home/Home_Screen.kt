@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
 import android.text.Html
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.activity.result.contract.ActivityResultContract
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eventsconferencespj.Activities.Conf_Detail.ConfeDetail
 import com.example.eventsconferencespj.Activities.Location.Location
 import com.example.eventsconferencespj.Activities.Users.User_Detail
+import com.example.eventsconferencespj.MySQL.DatabaseHelper.DbHelper
 import com.example.eventsconferencespj.PreventDoubleClick
 import com.example.eventsconferencespj.R
 import com.example.eventsconferencespj.databinding.ActivityHomeScreenBinding
@@ -22,6 +24,8 @@ import com.example.eventsconferencespj.databinding.ActivityHomeScreenBinding
 class Home_Screen : AppCompatActivity(){
     private lateinit var binding: ActivityHomeScreenBinding
     private lateinit var viewModel: HomeScreenViewModel
+    private lateinit var databaseHelper: DbHelper
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,20 +35,20 @@ class Home_Screen : AppCompatActivity(){
         // khởi tạo ViewModel
         viewModel = ViewModelProvider(this).get(HomeScreenViewModel::class.java)
 
+        databaseHelper = DbHelper(this)
+
         // lấy email, pass từ login và lưu vào viewModel
         val bundle : Bundle? = intent.extras
         viewModel.userEmail = bundle?.getString("email")
-        viewModel.userPass = bundle?.getString("password")
-        viewModel.Name = bundle?.getString("name")?: "New User"
-        // Sử dụng dữ liệu từ ViewModel
         val userEmailVM = viewModel.userEmail
-        val userPassVM = viewModel.userPass
-        binding.userName.text = viewModel.Name
+
+        // gán dữ liệu từ viewmodel cho text
+        val nameUser = viewModel.userEmail?.let { databaseHelper.getName(it) }
+        binding.userName.text = nameUser
 
         // Đổi màu hint của search bar
         val searchItem: SearchView = binding.searchView
         searchItem.setQueryHint(Html.fromHtml("<font color = #ffffff>" + "Tìm kiếm" + "</font>"))
-
 
         // Nhấn vào nav_location
         binding.navLocation.setOnClickListener {
@@ -59,7 +63,6 @@ class Home_Screen : AppCompatActivity(){
             if (PreventDoubleClick.checkClick()) {
                 val intent = Intent(this, User_Detail::class.java)
                 intent.putExtra("email", userEmailVM)
-                intent.putExtra("password", userPassVM)
                 startActivity(intent)
             }
         }
@@ -81,12 +84,12 @@ class Home_Screen : AppCompatActivity(){
         binding.HorizontalRecyclerView.adapter = adapter
 
 
+        // Click vào từng item trong recycler
         val startConfeDetail = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result ->
             if (result.resultCode == RESULT_OK) {
                 // Xử lí dữ liệu nhận về nếu cần thiết
             }
         }
-        // Click vào từng item trong recycler
         adapter.setOnItemClickListener(object : HomeAdapter.onItemClickListener{
             override fun onItemClicked(position: Int) {
                 val intent = Intent(this@Home_Screen, ConfeDetail::class.java)
@@ -101,7 +104,6 @@ class Home_Screen : AppCompatActivity(){
             }
         })
 
-
         // tìm kiếm
         searchItem.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(filterString: String): Boolean {
@@ -113,7 +115,6 @@ class Home_Screen : AppCompatActivity(){
                 adapter.filter.filter(filterString)
                 return true
             }
-
             override fun onQueryTextChange(filterString: String): Boolean {
                 if (filterString.isEmpty()) {
                     adapter.resetOriginalList()

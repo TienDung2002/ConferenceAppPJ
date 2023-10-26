@@ -30,28 +30,120 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         return result != -1L
     }
 
-    fun InsertPhone(phone: Int): Boolean {
+    fun updatePhone(email: String, newPhone: Int): Boolean {
         val sqLiteDatabase = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put("phone", phone)
-        val result = sqLiteDatabase.insert("user", null, contentValues)
+        contentValues.put("phone", newPhone)
+
+        // Cập nhật số điện thoại dựa trên email
+        val updatedRows = sqLiteDatabase.update(
+            "user",
+            contentValues,
+            "email = ?",
+            arrayOf(email)
+        )
+
         sqLiteDatabase.close()
-        return result != -1L
+        // Kiểm tra xem có dòng nào đã được cập nhật không
+        return updatedRows > 0
+    }
+    fun UpdateName(email: String, name: String): Boolean {
+        val sqLiteDatabase = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("name", name) // Cập nhật tên dựa trên email
+        val updatedRows = sqLiteDatabase.update(
+            "user",
+            contentValues,
+            "email = ?",
+            arrayOf(email)
+        )
+        sqLiteDatabase.close()
+        // Kiểm tra xem có dòng nào đã được cập nhật không
+        return updatedRows > 0
     }
 
-    fun getPhoneNumber(): Int? {
+//    // hàm tối ưu cho insert name, phone, email, pass
+//    fun insertUserData(email: String?, password: String?, phone: Int?, name: String?): Boolean {
+//        val sqLiteDatabase = this.writableDatabase
+//        val contentValues = ContentValues()
+//
+//        email?.let { contentValues.put("email", it) }
+//        password?.let { contentValues.put("password", it) }
+//        phone?.let { contentValues.put("phone", it) }
+//        name?.let { contentValues.put("name", it) }
+//
+//        val result = sqLiteDatabase.insert("user", null, contentValues)
+//        sqLiteDatabase.close()
+//
+//        return result != -1L
+//    }
+
+    fun getPhoneNum(email: String): Int? {
         val sqLiteDatabase = this.readableDatabase
-        val query = "SELECT phone FROM user" // Chọn số điện thoại từ bảng user
-        val cursor = sqLiteDatabase.rawQuery(query, null)
+        val query = "SELECT phone FROM user WHERE email = ?"
+        val cursor = sqLiteDatabase.rawQuery(query, arrayOf(email))
         val phoneNumber: Int?
+
         if (cursor.moveToFirst()) {
             phoneNumber = cursor.getInt(cursor.getColumnIndexOrThrow("phone"))
         } else {
             phoneNumber = null
         }
+
         cursor.close()
         sqLiteDatabase.close()
         return phoneNumber
+    }
+
+    fun getName(email: String): String? {
+        val sqLiteDatabase = this.readableDatabase
+        val query = "SELECT name FROM user WHERE email = ?"
+        val cursor = sqLiteDatabase.rawQuery(query, arrayOf(email))
+        val name: String?
+
+        if (cursor.moveToFirst()) {
+            name = cursor.getString(cursor.getColumnIndexOrThrow("name"))
+        } else {
+            name = null
+        }
+
+        cursor.close()
+        sqLiteDatabase.close()
+        return name
+    }
+
+    fun getEmail(email: String): String? {
+        val sqLiteDatabase = this.readableDatabase
+        val query = "SELECT email FROM user WHERE email = ?"
+        val cursor = sqLiteDatabase.rawQuery(query, arrayOf(email))
+        val result: String?
+
+        if (cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndexOrThrow("email"))
+        } else {
+            result = null
+        }
+
+        cursor.close()
+        sqLiteDatabase.close()
+        return result
+    }
+
+    fun getPassword(email: String): String? {
+        val sqLiteDatabase = this.readableDatabase
+        val query = "SELECT password FROM user WHERE email = ?"
+        val cursor = sqLiteDatabase.rawQuery(query, arrayOf(email))
+        val result: String?
+
+        if (cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndexOrThrow("password"))
+        } else {
+            result = null
+        }
+
+        cursor.close()
+        sqLiteDatabase.close()
+        return result
     }
 
     fun CheckEmail(email: String): Boolean {
@@ -89,7 +181,6 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
         )
 
         sqLiteDatabase.close()
-
         // Kiểm tra xem có dòng nào đã được cập nhật không
         return updatedRows > 0
     }

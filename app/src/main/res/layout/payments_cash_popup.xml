@@ -42,7 +42,7 @@
                 android:id="@+id/mess"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:text="Chúng tôi sẽ liên hệ lại để xác nhận hoặc hãy chủ động gọi hotline +84123456789 để được hỗ trợ nhanh nhất!"
+                android:text="Chúng tôi sẽ liên hệ lại để xác nhận hoặc hãy chủ động gọi hotline +84 123456789 để được hỗ trợ nhanh nhất!"
                 android:textColor="@color/main_white"
                 android:textSize="17sp"
                 android:layout_marginTop="15dp"
